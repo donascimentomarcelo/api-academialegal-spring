@@ -71,4 +71,16 @@ public class ExercicioService {
 		
 		return exercicio;
 	}
+	
+	public List<Exercicio> findExercicioByGrupo(Integer id) {
+		
+		List<Exercicio> exercicio = exercicioRepository.findExercicioByGrupo(id);
+		
+		if(exercicio.isEmpty())
+		{
+			throw new ObjectNotFoundException("O código " + id +" não foi encontrado!");
+		}
+		
+		return exercicio;
+	}
 }

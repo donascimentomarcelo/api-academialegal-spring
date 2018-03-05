@@ -63,4 +63,5 @@ public class ExercicioResource {
 		
 		return ResponseEntity.ok().body(exercicio);
 	}
+
 }
