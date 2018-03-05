@@ -53,7 +53,7 @@ public class ExercicioService {
 
 	public Exercicio update(Exercicio exercicio) 
 	{
-		Exercicio NewExercicio = exercicioRepository.findOne(exercicio.getId());
+		Exercicio NewExercicio = find(exercicio.getId());
 		
 		NewExercicio.setNome(exercicio.getNome());
 		
