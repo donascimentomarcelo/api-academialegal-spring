@@ -16,7 +16,7 @@ import br.com.academia.services.GrupoService;
 
 @RestController
 @RequestMapping(value = "/grupos")
-public class GrupoResources {
+public class GrupoResource {
 	
 	@Autowired
 	private GrupoService grupoService;

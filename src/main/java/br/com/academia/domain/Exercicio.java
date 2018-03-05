@@ -1,17 +1,18 @@
 package br.com.academia.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Grupo implements Serializable{
+public class Exercicio implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -19,53 +20,47 @@ public class Grupo implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "grupo_id")
+	private Grupo grupo;
 	
-	@OneToMany(mappedBy = "grupo")
-	private List<Exercicio> exercicios =  new ArrayList<>();
-	
-	public Grupo() 
+	public Exercicio()
 	{
-
+		
 	}
 
-
-	public Grupo(Integer id, String nome) 
-	{
+	public Exercicio(Integer id, String nome, Grupo grupo) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.grupo = grupo;
 	}
-
+	
 
 	public Integer getId() {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
-	public List<Exercicio> getExercicios() {
-		return exercicios;
+	public Grupo getGrupo() {
+		return grupo;
 	}
 
-
-	public void setExercicios(List<Exercicio> exercicios) {
-		this.exercicios = exercicios;
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -75,7 +70,6 @@ public class Grupo implements Serializable{
 		return result;
 	}
 
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -84,7 +78,7 @@ public class Grupo implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Grupo other = (Grupo) obj;
+		Exercicio other = (Exercicio) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -92,7 +86,6 @@ public class Grupo implements Serializable{
 			return false;
 		return true;
 	}
-	
 	
 	
 }
