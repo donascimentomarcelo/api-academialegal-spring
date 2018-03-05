@@ -9,6 +9,7 @@ import br.com.academia.domain.Exercicio;
 import br.com.academia.domain.Grupo;
 import br.com.academia.domain.dto.ExercicioDTO;
 import br.com.academia.domain.dto.ExercicioNewDTO;
+import br.com.academia.exceptions.ObjectNotFoundException;
 import br.com.academia.repositories.ExercicioRepository;
 import br.com.academia.repositories.GrupoRepository;
 
@@ -57,5 +58,17 @@ public class ExercicioService {
 		NewExercicio.setNome(exercicio.getNome());
 		
 		return exercicioRepository.save(NewExercicio);
+	}
+	
+	public Exercicio find(Integer id)
+	{
+		Exercicio exercicio = exercicioRepository.findOne(id);
+		
+		if(exercicio == null)
+		{
+			throw new ObjectNotFoundException("O código " + id +" não foi encontrado!");
+		}
+		
+		return exercicio;
 	}
 }

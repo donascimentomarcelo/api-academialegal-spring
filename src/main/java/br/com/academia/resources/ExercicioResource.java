@@ -55,4 +55,12 @@ public class ExercicioResource {
 		exercicioService.update(exercicio);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Exercicio> findOne(@PathVariable Integer id)
+	{
+		Exercicio exercicio = exercicioService.find(id);
+		
+		return ResponseEntity.ok().body(exercicio);
+	}
 }
