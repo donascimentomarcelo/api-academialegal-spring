@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,5 +44,15 @@ public class ExercicioResource {
 				.path("/{id}").buildAndExpand(exercicio.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody ExercicioDTO dto, @PathVariable Integer id)
+	{
+		Exercicio exercicio = exercicioService.fromDTO(dto);
+		
+		exercicio.setId(id);
+		exercicioService.update(exercicio);
+		return ResponseEntity.noContent().build();
 	}
 }
