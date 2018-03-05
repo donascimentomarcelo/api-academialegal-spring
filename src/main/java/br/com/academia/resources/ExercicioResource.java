@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +36,7 @@ public class ExercicioResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> create(@RequestBody ExercicioNewDTO exercicioNweDto)
+	public ResponseEntity<Void> create(@Valid @RequestBody ExercicioNewDTO exercicioNweDto)
 	{
 		Exercicio exercicio = exercicioService.fromDTO(exercicioNweDto);
 		
@@ -47,7 +49,7 @@ public class ExercicioResource {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody ExercicioDTO dto, @PathVariable Integer id)
+	public ResponseEntity<Void> update(@Valid @RequestBody ExercicioDTO dto, @PathVariable Integer id)
 	{
 		Exercicio exercicio = exercicioService.fromDTO(dto);
 		
