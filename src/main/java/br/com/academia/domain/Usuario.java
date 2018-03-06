@@ -2,6 +2,7 @@ package br.com.academia.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "seqUsuario")
 	@SequenceGenerator(name = "seqUsuario", sequenceName = "seq_id_usuario")
 	private Integer id;
+	@Column(unique=true)
 	private String email;
 	private String nome;
 	//private String senha;

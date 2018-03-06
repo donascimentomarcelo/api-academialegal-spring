@@ -5,7 +5,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.academia.domain.Usuario;
+import br.com.academia.services.validation.UsuarioInsert;
 
+@UsuarioInsert
 public class UsuarioDTO {
 	
 	private Integer id;
