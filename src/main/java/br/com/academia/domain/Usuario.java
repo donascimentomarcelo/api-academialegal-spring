@@ -1,40 +1,35 @@
 package br.com.academia.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Grupo implements Serializable{
+public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "seqGrupo")
-	@SequenceGenerator(name = "seqGrupo", sequenceName = "seq_id_grupo")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "seqUsuario")
+	@SequenceGenerator(name = "seqUsuario", sequenceName = "seq_id_usuario")
 	private Integer id;
+	private String email;
 	private String nome;
+	//private String senha;
+	//private Perfis perfis;
 	
 	
-	@OneToMany(mappedBy = "grupo")
-	private List<Exercicio> exercicios =  new ArrayList<>();
-	
-	public Grupo() 
-	{
-
+	public Usuario() {
+		super();
 	}
-
-
-	public Grupo(Integer id, String nome) 
-	{
+	
+	public Usuario(Integer id, String email, String nome) {
 		super();
 		this.id = id;
+		this.email = email;
 		this.nome = nome;
 	}
 
@@ -43,31 +38,25 @@ public class Grupo implements Serializable{
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-
-	public List<Exercicio> getExercicios() {
-		return exercicios;
-	}
-
-
-	public void setExercicios(List<Exercicio> exercicios) {
-		this.exercicios = exercicios;
-	}
-
 
 	@Override
 	public int hashCode() {
@@ -77,7 +66,6 @@ public class Grupo implements Serializable{
 		return result;
 	}
 
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -86,7 +74,7 @@ public class Grupo implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Grupo other = (Grupo) obj;
+		Usuario other = (Usuario) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -94,7 +82,6 @@ public class Grupo implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 	
 }

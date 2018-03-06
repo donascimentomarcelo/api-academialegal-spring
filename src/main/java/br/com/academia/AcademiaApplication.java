@@ -9,8 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.academia.domain.Exercicio;
 import br.com.academia.domain.Grupo;
+import br.com.academia.domain.Usuario;
 import br.com.academia.repositories.ExercicioRepository;
 import br.com.academia.repositories.GrupoRepository;
+import br.com.academia.repositories.UsuarioRepository;
 
 @SpringBootApplication
 public class AcademiaApplication implements CommandLineRunner{
@@ -20,6 +22,9 @@ public class AcademiaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private ExercicioRepository exercicioRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 		
 	public static void main(String[] args) {
 		SpringApplication.run(AcademiaApplication.class, args);
@@ -58,6 +63,11 @@ public class AcademiaApplication implements CommandLineRunner{
 		g3.getExercicios().addAll(Arrays.asList(ex9, ex10, ex11, ex12));
 		g4.getExercicios().addAll(Arrays.asList(ex13, ex14, ex15, ex16));
 		
+		Usuario u1 = new Usuario(null, "marcelojunin2010@hotmail.com", "Marcelo Nascimento");
+		Usuario u2 = new Usuario(null, "angela@hotmail.com", "Angela Silva");
+		Usuario u3 = new Usuario(null, "bruna@hotmail.com", "Bruna Cordeiro");
+		Usuario u4 = new Usuario(null, "celia@hotmail.com", "Célia Alves");
+		
 		grupoRepository.save(Arrays.asList(g1, g2, g3, g4));
 		
 		exercicioRepository.save(
@@ -65,5 +75,7 @@ public class AcademiaApplication implements CommandLineRunner{
 							  ex5, ex6, ex7, ex8,
 							  ex9, ex10, ex11, ex12,
 							  ex13, ex14, ex15, ex16));
+		
+		usuarioRepository.save(Arrays.asList(u1, u2, u3, u4));
 	}
 }
