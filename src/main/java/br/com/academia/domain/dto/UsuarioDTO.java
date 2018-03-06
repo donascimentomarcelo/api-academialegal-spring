@@ -19,7 +19,10 @@ public class UsuarioDTO {
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=5, max=80, message="O tamanho deve ser entre 5 e 80 caracteres")
 	private String nome;
-	//private String senha;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=6, max=12, message="O tamanho deve ser entre 6 e 12 caracteres")
+	private String senha;
 	//private Perfis perfis;
 	
 	
@@ -32,6 +35,7 @@ public class UsuarioDTO {
 		id = usuario.getId();
 		nome = usuario.getNome();
 		email = usuario.getEmail();
+		senha = usuario.getSenha();
 	}
 
 
@@ -57,6 +61,14 @@ public class UsuarioDTO {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 }

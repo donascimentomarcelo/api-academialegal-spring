@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.academia.domain.Usuario;
@@ -16,10 +17,13 @@ public class UsuarioService {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public Usuario fromDTO(UsuarioDTO dto) 
 	{
-		return new Usuario(dto.getId(), dto.getEmail(), dto.getNome());
+		return new Usuario(dto.getId(), dto.getEmail(), dto.getNome(), bCryptPasswordEncoder.encode(dto.getSenha()));
 	}
 
 	public Usuario save(Usuario usuario)

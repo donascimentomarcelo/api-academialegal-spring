@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.academia.domain.Exercicio;
 import br.com.academia.domain.Grupo;
@@ -25,6 +26,9 @@ public class AcademiaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 		
 	public static void main(String[] args) {
 		SpringApplication.run(AcademiaApplication.class, args);
@@ -63,10 +67,10 @@ public class AcademiaApplication implements CommandLineRunner{
 		g3.getExercicios().addAll(Arrays.asList(ex9, ex10, ex11, ex12));
 		g4.getExercicios().addAll(Arrays.asList(ex13, ex14, ex15, ex16));
 		
-		Usuario u1 = new Usuario(null, "marcelojunin2010@hotmail.com", "Marcelo Nascimento");
-		Usuario u2 = new Usuario(null, "angela@hotmail.com", "Angela Silva");
-		Usuario u3 = new Usuario(null, "bruna@hotmail.com", "Bruna Cordeiro");
-		Usuario u4 = new Usuario(null, "celia@hotmail.com", "Célia Alves");
+		Usuario u1 = new Usuario(null, "marcelojunin2010@hotmail.com", "Marcelo Nascimento", bCryptPasswordEncoder.encode("123"));
+		Usuario u2 = new Usuario(null, "angela@hotmail.com", "Angela Silva", bCryptPasswordEncoder.encode("123"));
+		Usuario u3 = new Usuario(null, "bruna@hotmail.com", "Bruna Cordeiro", bCryptPasswordEncoder.encode("123"));
+		Usuario u4 = new Usuario(null, "celia@hotmail.com", "Célia Alves", bCryptPasswordEncoder.encode("123"));
 		
 		grupoRepository.save(Arrays.asList(g1, g2, g3, g4));
 		
