@@ -33,7 +33,7 @@ public enum Perfil {
 		{
 			if(codigo.equals(perfil.getCodigo()))
 			{
-				
+				return perfil;
 			}
 		}
 		
