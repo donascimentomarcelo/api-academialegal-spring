@@ -24,7 +24,6 @@ public class UsuarioDTO {
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=6, max=12, message="O tamanho deve ser entre 6 e 12 caracteres")
-	@JsonIgnore
 	private String senha;
 	//private Perfis perfis;
 	
