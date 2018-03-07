@@ -86,7 +86,7 @@ public class Usuario implements Serializable{
 	}
 	
 
-	public Set<Object> getPerfis() 
+	public Set<Perfil> getPerfis() 
 	{
 		return perfis.stream().map(codigo -> Perfil.toEnum(codigo)).collect(Collectors.toSet());
 	}

@@ -22,7 +22,7 @@ public enum Perfil {
 		return descricao;
 	}
 
-	public static Object toEnum(Integer codigo) 
+	public static Perfil toEnum(Integer codigo) 
 	{
 		if(codigo == null)
 		{
