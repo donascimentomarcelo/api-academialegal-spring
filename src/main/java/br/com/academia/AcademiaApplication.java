@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import br.com.academia.domain.Exercicio;
 import br.com.academia.domain.Grupo;
 import br.com.academia.domain.Usuario;
+import br.com.academia.domain.enums.Perfil;
 import br.com.academia.repositories.ExercicioRepository;
 import br.com.academia.repositories.GrupoRepository;
 import br.com.academia.repositories.UsuarioRepository;
@@ -71,6 +72,9 @@ public class AcademiaApplication implements CommandLineRunner{
 		Usuario u2 = new Usuario(null, "angela@hotmail.com", "Angela Silva", bCryptPasswordEncoder.encode("123"));
 		Usuario u3 = new Usuario(null, "bruna@hotmail.com", "Bruna Cordeiro", bCryptPasswordEncoder.encode("123"));
 		Usuario u4 = new Usuario(null, "celia@hotmail.com", "Célia Alves", bCryptPasswordEncoder.encode("123"));
+		
+		u1.addPerfil(Perfil.ADMIN);
+		u3.addPerfil(Perfil.PROFESSOR);
 		
 		grupoRepository.save(Arrays.asList(g1, g2, g3, g4));
 		

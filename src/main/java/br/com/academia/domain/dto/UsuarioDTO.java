@@ -4,6 +4,8 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.academia.domain.Usuario;
 import br.com.academia.services.validation.UsuarioInsert;
 
@@ -22,6 +24,7 @@ public class UsuarioDTO {
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=6, max=12, message="O tamanho deve ser entre 6 e 12 caracteres")
+	@JsonIgnore
 	private String senha;
 	//private Perfis perfis;
 	
