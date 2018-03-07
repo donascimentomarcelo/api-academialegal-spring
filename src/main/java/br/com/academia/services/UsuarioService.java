@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 
 import br.com.academia.domain.Usuario;
 import br.com.academia.domain.dto.UsuarioDTO;
+import br.com.academia.domain.enums.Perfil;
+import br.com.academia.exceptions.AuthorizationException;
 import br.com.academia.exceptions.ObjectNotFoundException;
 import br.com.academia.repositories.UsuarioRepository;
+import br.com.academia.security.UserSpringSecurity;
 
 @Service
 public class UsuarioService {
@@ -39,6 +42,13 @@ public class UsuarioService {
 	}
 
 	public Usuario find(Integer id) {
+		
+		UserSpringSecurity usuarioLogado = UserService.authenticated();
+		
+		if(usuarioLogado ==  null || !usuarioLogado.hasRole(Perfil.ADMIN) && !id.equals(usuarioLogado.getId()))
+		{
+			throw new AuthorizationException("Acesso negado");
+		}
 		
 		Usuario usuario = usuarioRepository.findOne(id);
 		
