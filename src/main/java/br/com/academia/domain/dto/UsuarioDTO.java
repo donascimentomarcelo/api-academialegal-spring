@@ -4,8 +4,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import br.com.academia.domain.Usuario;
 import br.com.academia.services.validation.UsuarioInsert;
 

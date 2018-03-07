@@ -44,6 +44,11 @@ public class ExercicioService {
 	{
 		Grupo grupo = grupoRepository.findOne(dto.getGrupoId());
 		
+		if(grupo == null)
+		{
+			throw new ObjectNotFoundException("Violação de FK, código: " + dto.getGrupoId());
+		}
+		
 		Exercicio exercicio = new Exercicio(null, dto.getNome(), grupo);
 		
 		grupo.getExercicios().add(exercicio);
