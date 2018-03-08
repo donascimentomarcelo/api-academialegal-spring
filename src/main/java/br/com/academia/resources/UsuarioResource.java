@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.academia.domain.Usuario;
+import br.com.academia.domain.dto.PerfilDTO;
 import br.com.academia.domain.dto.UsuarioDTO;
 import br.com.academia.services.UsuarioService;
 
@@ -56,7 +57,7 @@ public class UsuarioResource {
 	}
 
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody UsuarioDTO dto, @PathVariable Integer id)
 	{
 		Usuario usuario = usuarioService.fromDTO(dto);
@@ -80,6 +81,26 @@ public class UsuarioResource {
 		Usuario usuario = usuarioService.findByEmail(email);
 				
 		return ResponseEntity.ok().body(usuario);
+	}
+	
+	@RequestMapping(value = "/{id}/addPerfil", method = RequestMethod.PUT)
+	public ResponseEntity<Void> addPerfil(@RequestBody PerfilDTO dto, @PathVariable Integer id)
+	{
+		Usuario usuario = usuarioService.fromDTOAddPerfil(dto, id);
+		
+		usuario = usuarioService.setPerfil(usuario, id);
+		
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/{id}/removePerfil", method = RequestMethod.PUT)
+	public ResponseEntity<Void> removePerfil(@RequestBody PerfilDTO dto, @PathVariable Integer id)
+	{
+		Usuario usuario = usuarioService.fromDTORemovePerfil(dto, id);
+		
+		usuario = usuarioService.setPerfil(usuario, id);
+		
+		return ResponseEntity.noContent().build();
 	}
 
 	public void uploadProfilePicture(MultipartFile multipartFile)

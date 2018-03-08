@@ -95,6 +95,11 @@ public class Usuario implements Serializable{
 	{
 		perfis.add(perfil.getCodigo());
 	}
+	
+	public void removePerfil(Perfil perfil) 
+	{
+		perfis.remove(perfil.getCodigo());
+	}
 
 	@Override
 	public int hashCode() {

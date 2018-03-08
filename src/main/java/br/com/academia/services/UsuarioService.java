@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.academia.domain.Usuario;
+import br.com.academia.domain.dto.PerfilDTO;
 import br.com.academia.domain.dto.UsuarioDTO;
 import br.com.academia.domain.enums.Perfil;
 import br.com.academia.exceptions.AuthorizationException;
@@ -79,5 +80,59 @@ public class UsuarioService {
 		
 		return usuario;
 	}
+	
+	public Usuario fromDTOAddPerfil(PerfilDTO dto, Integer id) 
+	{
+		Usuario usuario = find(id);
+		
+		if(dto.getPerfil() == 1)
+		{
+			usuario.addPerfil(Perfil.ADMIN);
+		}
+		else if(dto.getPerfil() == 3)
+		{
+			usuario.addPerfil(Perfil.PROFESSOR);
+		}
+		else
+		{
+			throw new ObjectNotFoundException("Identificador não localizado no sistema");
+		}
+		
+		return usuario;
+	}
+	
+	public Usuario fromDTORemovePerfil(PerfilDTO dto, Integer id) 
+	{
+		Usuario usuario = find(id);
+		
+		if(dto.getPerfil() == 1)
+		{
+			usuario.removePerfil(Perfil.ADMIN);
+		}
+		else if(dto.getPerfil() == 2)
+		{
+			usuario.removePerfil(Perfil.CLIENTE);
+		}
+		else if(dto.getPerfil() == 3)
+		{
+			usuario.removePerfil(Perfil.PROFESSOR);
+		}
+		else
+		{
+			throw new ObjectNotFoundException("Identificador não localizado no sistema");
+		}
+		
+		return usuario;
+	}
+
+	
+	public Usuario setPerfil(Usuario usuario, Integer id) {
+		
+		usuario.setId(id);
+		usuarioRepository.save(usuario);
+
+		return usuario;
+	}
+
 	
 }
