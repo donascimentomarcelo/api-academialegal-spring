@@ -1,7 +1,9 @@
 package br.com.academia.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -13,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,6 +40,9 @@ public class Usuario implements Serializable{
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Solicitacao> solicitacoes = new ArrayList<>();
 	
 	
 	public Usuario() {
@@ -99,6 +105,14 @@ public class Usuario implements Serializable{
 	public void removePerfil(Perfil perfil) 
 	{
 		perfis.remove(perfil.getCodigo());
+	}
+	
+	public List<Solicitacao> getSolicitacoes() {
+		return solicitacoes;
+	}
+
+	public void setSolicitacoes(List<Solicitacao> solicitacoes) {
+		this.solicitacoes = solicitacoes;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package br.com.academia;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.academia.domain.Exercicio;
 import br.com.academia.domain.Grupo;
+import br.com.academia.domain.Solicitacao;
 import br.com.academia.domain.Usuario;
 import br.com.academia.domain.enums.Perfil;
+import br.com.academia.domain.enums.TipoSerie;
 import br.com.academia.repositories.ExercicioRepository;
 import br.com.academia.repositories.GrupoRepository;
+import br.com.academia.repositories.SolicitacaoRepository;
 import br.com.academia.repositories.UsuarioRepository;
 
 @SpringBootApplication
@@ -27,6 +31,9 @@ public class AcademiaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private SolicitacaoRepository solicitacaoRepository;  
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -76,6 +83,12 @@ public class AcademiaApplication implements CommandLineRunner{
 		u1.addPerfil(Perfil.ADMIN);
 		u3.addPerfil(Perfil.PROFESSOR);
 		
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		
+		Solicitacao s1 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.PENDENTE, "Loren ipsun ...", u1);
+		
+		u1.getSolicitacoes().addAll(Arrays.asList(s1));
+		
 		grupoRepository.save(Arrays.asList(g1, g2, g3, g4));
 		
 		exercicioRepository.save(
@@ -85,5 +98,7 @@ public class AcademiaApplication implements CommandLineRunner{
 							  ex13, ex14, ex15, ex16));
 		
 		usuarioRepository.save(Arrays.asList(u1, u2, u3, u4));
+		
+		solicitacaoRepository.save(Arrays.asList(s1));
 	}
 }
