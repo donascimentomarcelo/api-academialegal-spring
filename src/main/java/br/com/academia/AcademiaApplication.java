@@ -86,11 +86,12 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 		
-		Solicitacao s1 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
+		Solicitacao s1 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u1);
 		Solicitacao s2 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.DEFINICAO, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
 		Solicitacao s3 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
 		
-		u2.getSolicitacoes().addAll(Arrays.asList(s1, s2, s3));
+		u1.getSolicitacoes().addAll(Arrays.asList(s1));
+		u2.getSolicitacoes().addAll(Arrays.asList(s2, s3));
 		
 		grupoRepository.save(Arrays.asList(g1, g2, g3, g4));
 		

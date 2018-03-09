@@ -1,5 +1,7 @@
 package br.com.academia.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -7,7 +9,10 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.academia.domain.Solicitacao;
+import br.com.academia.exceptions.ObjectNotFoundException;
 import br.com.academia.repositories.SolicitacaoRepository;
+import br.com.academia.security.UserSpringSecurity;
+import br.com.academia.services.UserService;
 
 @Service
 public class SolicitacaoService {
@@ -19,5 +24,26 @@ public class SolicitacaoService {
 	{
 		PageRequest pageRequest = new PageRequest(page,  linesPerPage, Direction.valueOf(direction), orderBy);
 		return solicitacaoRepository.findAll(pageRequest);
+	}
+
+	public List<Solicitacao> findByUser() {
+		
+		UserSpringSecurity usuarioLogado = UserService.authenticated();
+		
+		List<Solicitacao> solicitacao = solicitacaoRepository.findByUser(usuarioLogado.getId());
+		
+		return solicitacao;
+	}
+	
+	public Solicitacao find(Integer id) {
+		
+		Solicitacao solicitacao = solicitacaoRepository.findOne(id);
+		
+		if(solicitacao == null)
+		{
+			throw new ObjectNotFoundException("O código " + id +" não foi encontrado!");
+		}
+		
+		return solicitacao;
 	}
 }
