@@ -25,7 +25,7 @@ public class Solicitacao implements Serializable{
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "seqSolicitacao")
 	@SequenceGenerator(name = "seqSolicitacao", sequenceName = "seq_id_solicitacao")
 	private Integer id;
-	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dataSolicitacao;
 	private Integer tipoSerie;
 	private Integer statusSerie;

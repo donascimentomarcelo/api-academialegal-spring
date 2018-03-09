@@ -14,7 +14,6 @@ import br.com.academia.domain.dto.SolicitacaoDTO;
 import br.com.academia.exceptions.ObjectNotFoundException;
 import br.com.academia.repositories.SolicitacaoRepository;
 import br.com.academia.security.UserSpringSecurity;
-import br.com.academia.services.UserService;
 
 @Service
 public class SolicitacaoService {
@@ -54,11 +53,11 @@ public class SolicitacaoService {
 	}
 
 	public Solicitacao save(Solicitacao solicitacao) {
-			
-		Date dataAtual = new Date();
-		solicitacao.setDataSolicitacao(dataAtual);
+		
+		solicitacao.setDataSolicitacao(new Date());
 		
 		return solicitacaoRepository.save(solicitacao);
 	}
+	
 
 }

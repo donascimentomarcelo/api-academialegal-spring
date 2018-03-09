@@ -18,7 +18,7 @@ public class SolicitacaoDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dataSolicitacao;
 	private TipoSerie tipoSerie;
 	private StatusSerie statusSerie;

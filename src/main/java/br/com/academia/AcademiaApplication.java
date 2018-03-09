@@ -84,11 +84,11 @@ public class AcademiaApplication implements CommandLineRunner{
 		u1.addPerfil(Perfil.ADMIN);
 		u3.addPerfil(Perfil.PROFESSOR);
 		
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Solicitacao s1 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u1);
-		Solicitacao s2 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.DEFINICAO, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
-		Solicitacao s3 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
+		Solicitacao s1 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u1);
+		Solicitacao s2 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.DEFINICAO, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
+		Solicitacao s3 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
 		
 		u1.getSolicitacoes().addAll(Arrays.asList(s1));
 		u2.getSolicitacoes().addAll(Arrays.asList(s2, s3));
