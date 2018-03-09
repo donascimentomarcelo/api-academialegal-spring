@@ -1,16 +1,15 @@
 package br.com.academia.domain.enums;
 
-public enum TipoSerie {
+public enum StatusSerie {
 	
-	HIPERTROFIA(1, "Hipertrofia"),
-	DEFINICAO(2, "Definição"),
-	RESISTENCIA(3, "Resistência"),
-	OUTROS(4, "Outros");
+	PENDENTE(1, "Pendente"),
+	CONCLUIDO(2, "Concluido"),
+	REJEITADO(3, "Rejeitado");
 	
 	private int codigo;
 	private String descricao;
 	
-	private TipoSerie(int codigo, String descricao) {
+	private StatusSerie(int codigo, String descricao) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
@@ -23,14 +22,14 @@ public enum TipoSerie {
 		return descricao;
 	}
 
-	public static TipoSerie toEnum(Integer codigo)
+	public static StatusSerie toEnum(Integer codigo)
 	{
 		if(codigo == null)
 		{
 			return null;
 		}
 		
-		for (TipoSerie serie: TipoSerie.values())
+		for (StatusSerie serie: StatusSerie.values())
 		{
 			if(codigo.equals(serie.getCodigo()))
 			{
@@ -39,6 +38,5 @@ public enum TipoSerie {
 		}
 		throw new IllegalArgumentException("Código inválido" + codigo);
 	}
-	
 	
 }

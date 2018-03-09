@@ -1,9 +1,12 @@
 package br.com.academia.domain.dto;
 
+import java.io.Serializable;
+
 import br.com.academia.services.validation.UsuarioInsert;
 
 @UsuarioInsert
-public class PerfilDTO {
+public class PerfilDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	

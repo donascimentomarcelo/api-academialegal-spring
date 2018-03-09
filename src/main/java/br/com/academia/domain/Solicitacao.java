@@ -11,8 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.academia.domain.enums.StatusSerie;
 import br.com.academia.domain.enums.TipoSerie;
 
 @Entity
@@ -23,9 +25,12 @@ public class Solicitacao implements Serializable{
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "seqSolicitacao")
 	@SequenceGenerator(name = "seqSolicitacao", sequenceName = "seq_id_solicitacao")
 	private Integer id;
+	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date dataSolicitacao;
 	private Integer tipoSerie;
+	private Integer statusSerie;
 	private String descricao;
+	private String justificativa;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -38,12 +43,14 @@ public class Solicitacao implements Serializable{
 	}
 
 
-	public Solicitacao(Integer id, Date dataSolicitacao, TipoSerie tipoSerie, String descricao, Usuario usuario) {
+	public Solicitacao(Integer id, Date dataSolicitacao, TipoSerie tipoSerie, StatusSerie statusSerie, String descricao,String justificativa, Usuario usuario) {
 		super();
 		this.id = id;
 		this.dataSolicitacao = dataSolicitacao;
 		this.tipoSerie = (tipoSerie == null) ? null : tipoSerie.getCodigo();
+		this.statusSerie = (statusSerie == null) ? null : statusSerie.getCodigo();
 		this.descricao = descricao;
+		this.justificativa = justificativa;
 		this.usuario = usuario;
 	}
 
@@ -67,6 +74,16 @@ public class Solicitacao implements Serializable{
 		this.dataSolicitacao = dataSolicitacao;
 	}
 
+	
+	public StatusSerie getStatusSerie() {
+		return StatusSerie.toEnum(statusSerie);
+	}
+
+
+	public void setStatusSerie(StatusSerie statusSerie) {
+		this.statusSerie = statusSerie.getCodigo();
+	}
+
 
 	public TipoSerie getTipoSerie() {
 		return TipoSerie.toEnum(tipoSerie);
@@ -86,7 +103,15 @@ public class Solicitacao implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public String getJustificativa() {
+		return justificativa;
+	}
 
+
+	public void setJustificativa(String justificativa) {
+		this.justificativa = justificativa;
+	}
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -96,6 +121,34 @@ public class Solicitacao implements Serializable{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Solicitacao other = (Solicitacao) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
 	
 	
 	

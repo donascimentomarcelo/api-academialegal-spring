@@ -14,6 +14,7 @@ import br.com.academia.domain.Grupo;
 import br.com.academia.domain.Solicitacao;
 import br.com.academia.domain.Usuario;
 import br.com.academia.domain.enums.Perfil;
+import br.com.academia.domain.enums.StatusSerie;
 import br.com.academia.domain.enums.TipoSerie;
 import br.com.academia.repositories.ExercicioRepository;
 import br.com.academia.repositories.GrupoRepository;
@@ -85,9 +86,11 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 		
-		Solicitacao s1 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.PENDENTE, "Loren ipsun ...", u1);
+		Solicitacao s1 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
+		Solicitacao s2 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.DEFINICAO, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
+		Solicitacao s3 = new Solicitacao(null, format.parse("08/03/2018 10:32"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
 		
-		u1.getSolicitacoes().addAll(Arrays.asList(s1));
+		u2.getSolicitacoes().addAll(Arrays.asList(s1, s2, s3));
 		
 		grupoRepository.save(Arrays.asList(g1, g2, g3, g4));
 		
@@ -99,6 +102,6 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		usuarioRepository.save(Arrays.asList(u1, u2, u3, u4));
 		
-		solicitacaoRepository.save(Arrays.asList(s1));
+		solicitacaoRepository.save(Arrays.asList(s1, s2, s3));
 	}
 }
