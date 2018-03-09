@@ -3,6 +3,9 @@ package br.com.academia.domain.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,6 +22,8 @@ public class SolicitacaoDTO implements Serializable{
 	private Date dataSolicitacao;
 	private TipoSerie tipoSerie;
 	private StatusSerie statusSerie;
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=10, max=80, message="O tamanho deve ser entre 10 e 80 caracteres")
 	private String descricao;
 	private String justificativa;
 	@JsonIgnore

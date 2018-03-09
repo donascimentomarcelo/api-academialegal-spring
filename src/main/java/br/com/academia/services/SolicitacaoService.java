@@ -1,5 +1,6 @@
 package br.com.academia.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.academia.domain.Solicitacao;
+import br.com.academia.domain.dto.SolicitacaoDTO;
 import br.com.academia.exceptions.ObjectNotFoundException;
 import br.com.academia.repositories.SolicitacaoRepository;
 import br.com.academia.security.UserSpringSecurity;
@@ -46,4 +48,17 @@ public class SolicitacaoService {
 		
 		return solicitacao;
 	}
+
+	public Solicitacao fromDTO(SolicitacaoDTO dto) {
+		return new Solicitacao(dto.getId(), dto.getDataSolicitacao(), dto.getTipoSerie(), dto.getStatusSerie(), dto.getDescricao(), dto.getJustificativa(), dto.getUsuario());
+	}
+
+	public Solicitacao save(Solicitacao solicitacao) {
+			
+		Date dataAtual = new Date();
+		solicitacao.setDataSolicitacao(dataAtual);
+		
+		return solicitacaoRepository.save(solicitacao);
+	}
+
 }
