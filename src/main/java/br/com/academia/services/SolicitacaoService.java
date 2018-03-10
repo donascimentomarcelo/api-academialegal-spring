@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.academia.domain.Solicitacao;
 import br.com.academia.domain.dto.SolicitacaoDTO;
+import br.com.academia.domain.enums.StatusSerie;
 import br.com.academia.exceptions.ObjectNotFoundException;
 import br.com.academia.repositories.SolicitacaoRepository;
 import br.com.academia.security.UserSpringSecurity;
@@ -57,6 +58,17 @@ public class SolicitacaoService {
 		solicitacao.setDataSolicitacao(new Date());
 		
 		return solicitacaoRepository.save(solicitacao);
+	}
+
+	public Solicitacao rejeitar(Integer id) {
+		
+		Solicitacao solicitacao = find(id);
+		
+		solicitacao.setStatusSerie(StatusSerie.REJEITADO);
+		
+		solicitacao = solicitacaoRepository.save(solicitacao);
+		
+		return solicitacao;
 	}
 	
 

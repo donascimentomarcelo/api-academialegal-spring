@@ -66,4 +66,12 @@ public class SolicitacaoResource {
 				.path("/{id}").buildAndExpand(solicitacao.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
+	
+	@RequestMapping(value = "/{id}/rejeitar", method = RequestMethod.PUT)
+	public ResponseEntity<SolicitacaoDTO> rejeitar(@PathVariable Integer id)
+	{
+		solicitacaoService.rejeitar(id);
+		
+		return ResponseEntity.noContent().build();
+	}
 }
