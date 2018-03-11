@@ -1,6 +1,10 @@
 package br.com.academia.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,6 +32,9 @@ public class Exercicio implements Serializable{
 	@JoinColumn(name = "grupo_id")
 	private Grupo grupo;
 	
+	@OneToMany(mappedBy = "id.exercicio")
+	private Set<ItemSerie> itens = new HashSet<>();
+	
 	public Exercicio()
 	{
 		
@@ -39,6 +47,15 @@ public class Exercicio implements Serializable{
 		this.grupo = grupo;
 	}
 	
+	public List<Serie> getSeries()
+	{
+		List<Serie> lista = new ArrayList<>();
+		for(ItemSerie x: itens)
+		{
+			lista.add(x.getSerie());
+		}
+		return lista;
+	}
 
 	public Integer getId() {
 		return id;
@@ -62,6 +79,14 @@ public class Exercicio implements Serializable{
 
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
+	}
+	
+	public Set<ItemSerie> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemSerie> itens) {
+		this.itens = itens;
 	}
 
 	@Override
@@ -88,6 +113,6 @@ public class Exercicio implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 	
 }
