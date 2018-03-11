@@ -9,8 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.academia.domain.enums.TipoSerie;
 
@@ -32,13 +36,18 @@ public class Serie  implements Serializable{
 	@OneToMany(mappedBy = "id.serie")
 	private Set<ItemSerie> itens = new HashSet<>();
 	
+	@OneToOne
+	@JoinColumn(name="solicitacao_id")
+	@JsonIgnore
+	private Solicitacao solicitacao;
+	
 	public Serie() {
 		super();
 	}
 
 
 	public Serie(Integer id, String observacao, Date dataCriacao, Date dataVencimento, String professor,
-			TipoSerie tipoSerie) {
+			TipoSerie tipoSerie, Solicitacao solicitacao) {
 		super();
 		this.id = id;
 		this.observacao = observacao;
@@ -46,6 +55,7 @@ public class Serie  implements Serializable{
 		this.dataVencimento = dataVencimento;
 		this.professor = professor;
 		this.tipoSerie = (tipoSerie == null) ? null : tipoSerie.getCodigo();
+		this.solicitacao = solicitacao;
 	}
 
 
@@ -115,6 +125,16 @@ public class Serie  implements Serializable{
 
 	public void setItens(Set<ItemSerie> itens) {
 		this.itens = itens;
+	}
+	
+
+	public Solicitacao getSolicitacao() {
+		return solicitacao;
+	}
+
+
+	public void setSolicitacao(Solicitacao solicitacao) {
+		this.solicitacao = solicitacao;
 	}
 
 	@Override

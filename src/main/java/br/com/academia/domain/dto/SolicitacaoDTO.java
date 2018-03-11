@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.academia.domain.Serie;
 import br.com.academia.domain.Solicitacao;
 import br.com.academia.domain.Usuario;
 import br.com.academia.domain.enums.StatusSerie;
@@ -28,6 +29,7 @@ public class SolicitacaoDTO implements Serializable{
 	private String justificativa;
 	@JsonIgnore
 	private Usuario usuario;
+	private Serie serie;
 	
 	public SolicitacaoDTO() {
 		super();
@@ -43,6 +45,7 @@ public class SolicitacaoDTO implements Serializable{
 		descricao = solicitacao.getDescricao();
 		justificativa = solicitacao.getJustificativa();
 		usuario = solicitacao.getUsuario();
+		serie=solicitacao.getSerie();
 	
 	}
 
@@ -102,6 +105,14 @@ public class SolicitacaoDTO implements Serializable{
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Serie getSerie() {
+		return serie;
+	}
+
+	public void setSerie(Serie serie) {
+		this.serie = serie;
 	}
 	
 	

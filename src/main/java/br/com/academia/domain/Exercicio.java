@@ -32,6 +32,7 @@ public class Exercicio implements Serializable{
 	@JoinColumn(name = "grupo_id")
 	private Grupo grupo;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "id.exercicio")
 	private Set<ItemSerie> itens = new HashSet<>();
 	
@@ -47,6 +48,7 @@ public class Exercicio implements Serializable{
 		this.grupo = grupo;
 	}
 	
+	@JsonIgnore
 	public List<Serie> getSeries()
 	{
 		List<Serie> lista = new ArrayList<>();

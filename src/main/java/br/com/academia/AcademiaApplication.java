@@ -103,6 +103,8 @@ public class AcademiaApplication implements CommandLineRunner{
 		u1.getSolicitacoes().addAll(Arrays.asList(s1));
 		u2.getSolicitacoes().addAll(Arrays.asList(s2, s3));
 		
+		
+		
 		grupoRepository.save(Arrays.asList(g1, g2, g3, g4));
 		
 		exercicioRepository.save(
@@ -117,7 +119,7 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		//RELACIONANDO SERIE COM ITEM SERIE
 		
-		Serie sr1 = new Serie(null, "Loren ipsun ...", format.parse("08/03/2018"), format.parse("08/05/2018"), "Manuel", TipoSerie.HIPERTROFIA);
+		Serie sr1 = new Serie(null, "Loren ipsun ...", format.parse("08/03/2018"), format.parse("08/05/2018"), "Manuel", TipoSerie.HIPERTROFIA, s1);
 		
 		serieRepository.save(sr1);
 		
