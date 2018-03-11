@@ -96,9 +96,9 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Solicitacao s1 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u1);
-		Solicitacao s2 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.DEFINICAO, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
-		Solicitacao s3 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2);
+		Solicitacao s1 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.CONCLUIDO, "Loren ipsun ...", null, u1);
+		Solicitacao s2 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.DEFINICAO, StatusSerie.CONCLUIDO, "Loren ipsun ...", null, u2);
+		Solicitacao s3 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.CONCLUIDO, "Loren ipsun ...", null, u2);
 		
 		u1.getSolicitacoes().addAll(Arrays.asList(s1));
 		u2.getSolicitacoes().addAll(Arrays.asList(s2, s3));
@@ -120,15 +120,30 @@ public class AcademiaApplication implements CommandLineRunner{
 		//RELACIONANDO SERIE COM ITEM SERIE
 		
 		Serie sr1 = new Serie(null, "Loren ipsun ...", format.parse("08/03/2018"), format.parse("08/05/2018"), "Manuel", TipoSerie.HIPERTROFIA, s1);
+		Serie sr2 = new Serie(null, "Loren ipsun ...", format.parse("01/02/2018"), format.parse("01/04/2018"), "Joana", TipoSerie.DEFINICAO, s2);
+		Serie sr3 = new Serie(null, "Loren ipsun ...", format.parse("15/01/2018"), format.parse("15/03/2018"), "Maria", TipoSerie.HIPERTROFIA, s3);
 		
-		serieRepository.save(sr1);
+		serieRepository.save(Arrays.asList(sr1, sr2, sr3));
 		
 		ItemSerie is1 = new ItemSerie(sr1, ex1, "10 - 10 - 10", "A", null);
 		ItemSerie is2 = new ItemSerie(sr1, ex2, "10 - 10 - 10", "A", null);
 		ItemSerie is3 = new ItemSerie(sr1, ex3, "10 - 10 - 10", "A", null);
 		
-		sr1.getItens().addAll(Arrays.asList(is1, is2, is3));
+		ItemSerie is4 = new ItemSerie(sr2, ex4, "15 - 15 - 20", "A", null);
+		ItemSerie is5 = new ItemSerie(sr2, ex5, "15 - 15 - 20", "A", null);
+		ItemSerie is6 = new ItemSerie(sr2, ex6, "15 - 15 - 20", "A", null);
+		ItemSerie is7 = new ItemSerie(sr2, ex7, "15 - 15 - 20", "B", null);
+		ItemSerie is8 = new ItemSerie(sr2, ex8, "15 - 15 - 20", "B", null);
+		ItemSerie is9 = new ItemSerie(sr2, ex9, "15 - 15 - 20", "B", null);
 		
-		itemSerieRepository.save(Arrays.asList(is1, is2, is3));
+		ItemSerie is10 = new ItemSerie(sr3, ex13, "10 - 10 - 10", "A", null);
+		ItemSerie is11 = new ItemSerie(sr3, ex14, "10 - 10 - 10", "A", null);
+		ItemSerie is12 = new ItemSerie(sr3, ex15, "10 - 10 - 10", "A", null);
+		
+		sr1.getItens().addAll(Arrays.asList(is1, is2, is3));
+		sr2.getItens().addAll(Arrays.asList(is4, is5, is6, is7, is8, is9));
+		sr3.getItens().addAll(Arrays.asList(is10, is11, is12));
+		
+		itemSerieRepository.save(Arrays.asList(is1, is2, is3, is4, is5, is6, is7, is8, is9, is10, is11, is12));
 	}
 }
