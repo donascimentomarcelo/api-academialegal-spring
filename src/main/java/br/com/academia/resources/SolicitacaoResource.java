@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.academia.domain.Solicitacao;
+import br.com.academia.domain.dto.RejeitarDTO;
 import br.com.academia.domain.dto.SolicitacaoDTO;
 import br.com.academia.services.SolicitacaoService;
 
@@ -68,9 +69,11 @@ public class SolicitacaoResource {
 	}
 	
 	@RequestMapping(value = "/{id}/rejeitar", method = RequestMethod.PUT)
-	public ResponseEntity<SolicitacaoDTO> rejeitar(@PathVariable Integer id)
+	public ResponseEntity<SolicitacaoDTO> rejeitar(@PathVariable Integer id, @RequestBody RejeitarDTO dto)
 	{
-		solicitacaoService.rejeitar(id);
+		Solicitacao solicitacao = solicitacaoService.fromDTO(dto);
+		
+		solicitacaoService.rejeitar(id, solicitacao.getJustificativa());
 		
 		return ResponseEntity.noContent().build();
 	}

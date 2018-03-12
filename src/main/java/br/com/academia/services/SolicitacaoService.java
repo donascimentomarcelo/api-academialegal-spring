@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.academia.domain.Solicitacao;
+import br.com.academia.domain.dto.RejeitarDTO;
 import br.com.academia.domain.dto.SolicitacaoDTO;
 import br.com.academia.domain.enums.StatusSerie;
 import br.com.academia.exceptions.ObjectNotFoundException;
@@ -60,15 +61,20 @@ public class SolicitacaoService {
 		return solicitacaoRepository.save(solicitacao);
 	}
 
-	public Solicitacao rejeitar(Integer id) {
+	public Solicitacao rejeitar(Integer id, String justificativa) {
 		
 		Solicitacao solicitacao = find(id);
 		
 		solicitacao.setStatusSerie(StatusSerie.REJEITADO);
+		solicitacao.setJustificativa(justificativa);
 		
 		solicitacao = solicitacaoRepository.save(solicitacao);
 		
 		return solicitacao;
+	}
+
+	public Solicitacao fromDTO(RejeitarDTO dto) {
+		return new Solicitacao(dto.getId(), null, null, null, null, dto.getJustificativa(), null);
 	}
 	
 
