@@ -3,6 +3,8 @@ package br.com.academia.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +59,7 @@ public class SolicitacaoResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<SolicitacaoDTO> create(@RequestBody SolicitacaoDTO dto)
+	public ResponseEntity<SolicitacaoDTO> create(@Valid @RequestBody SolicitacaoDTO dto)
 	{
 		Solicitacao solicitacao = solicitacaoService.fromDTO(dto);
 		
@@ -69,7 +71,7 @@ public class SolicitacaoResource {
 	}
 	
 	@RequestMapping(value = "/{id}/rejeitar", method = RequestMethod.PUT)
-	public ResponseEntity<SolicitacaoDTO> rejeitar(@PathVariable Integer id, @RequestBody RejeitarDTO dto)
+	public ResponseEntity<SolicitacaoDTO> rejeitar(@Valid @RequestBody RejeitarDTO dto, @PathVariable Integer id )
 	{
 		Solicitacao solicitacao = solicitacaoService.fromDTO(dto);
 		
