@@ -20,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.academia.domain.Solicitacao;
 import br.com.academia.domain.dto.RejeitarDTO;
 import br.com.academia.domain.dto.SolicitacaoDTO;
+import br.com.academia.domain.dto.SolicitacaoPendenteDTO;
 import br.com.academia.services.SolicitacaoService;
 
 @RestController
@@ -78,5 +79,18 @@ public class SolicitacaoResource {
 		solicitacaoService.rejeitar(id, solicitacao.getJustificativa());
 		
 		return ResponseEntity.noContent().build();
+	}
+	
+	@PreAuthorize("hasAnyRole('ADMIN')")
+	@RequestMapping(value="/pendentes",method = RequestMethod.GET)
+	public ResponseEntity<Page<SolicitacaoPendenteDTO>> listPerPageSolicitacaoPendente(
+			@RequestParam(value = "page", defaultValue = "0") Integer page, 
+			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
+			@RequestParam(value = "orderBy", defaultValue = "dataSolicitacao") String orderBy, 
+			@RequestParam(value = "direction", defaultValue = "ASC")String direction)
+	{
+		Page<Solicitacao> list = solicitacaoService.findPageSolicitacaoPendente(page, linesPerPage, orderBy, direction);
+		Page<SolicitacaoPendenteDTO> listDTO = list.map(solicitacao -> new SolicitacaoPendenteDTO(solicitacao));
+		return ResponseEntity.ok().body(listDTO);
 	}
 }

@@ -2,6 +2,8 @@ package br.com.academia.repositories;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,5 +16,8 @@ public interface SolicitacaoRepository extends JpaRepository<Solicitacao, Intege
 
 	@Query("SELECT sol from Solicitacao sol WHERE sol.usuario.id = :usuario_logado")
 	public List<Solicitacao> findByUser(@Param("usuario_logado") Integer usuario_logado);
+
+	@Query("SELECT sol from Solicitacao sol WHERE sol.statusSerie = 1")
+	public Page<Solicitacao> findPageSolicitacaoPendente(Pageable pageRequest);
 
 }

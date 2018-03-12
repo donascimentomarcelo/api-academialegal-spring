@@ -76,6 +76,12 @@ public class SolicitacaoService {
 	public Solicitacao fromDTO(RejeitarDTO dto) {
 		return new Solicitacao(dto.getId(), null, null, null, null, dto.getJustificativa(), null);
 	}
+
+	public Page<Solicitacao> findPageSolicitacaoPendente(Integer page, Integer linesPerPage, String orderBy,
+			String direction) {
+		PageRequest pageRequest = new PageRequest(page,  linesPerPage, Direction.valueOf(direction), orderBy);
+		return solicitacaoRepository.findPageSolicitacaoPendente(pageRequest);
+	}
 	
 
 }
