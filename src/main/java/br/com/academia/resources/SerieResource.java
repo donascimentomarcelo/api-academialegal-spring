@@ -29,4 +29,15 @@ public class SerieResource {
 	//	Page<UsuarioDTO> listDto = list.map(usuario -> new UsuarioDTO(usuario));
 		return ResponseEntity.ok().body(list);
 	}
+	
+	@RequestMapping( value="/listByUser",method = RequestMethod.GET)
+	public ResponseEntity<Page<Serie>> listPerPageByUser(
+			@RequestParam(value = "page", defaultValue = "0") Integer page, 
+			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
+			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy, 
+			@RequestParam(value = "direction", defaultValue = "ASC")String direction)
+	{
+		Page<Serie> list = serieService.findPageByUser(page, linesPerPage, orderBy, direction);
+		return ResponseEntity.ok().body(list);
+	}
 }

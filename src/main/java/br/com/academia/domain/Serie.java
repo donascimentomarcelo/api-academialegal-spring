@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.academia.domain.enums.TipoSerie;
@@ -28,7 +29,11 @@ public class Serie  implements Serializable{
 	private Integer id;
 	
 	private String observacao;
+	
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dataCriacao;
+	
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dataVencimento;
 	private String professor;
 	private Integer tipoSerie;
