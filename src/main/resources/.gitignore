@@ -1,0 +1,4 @@
+aws.access_key_id=AKIAIN74DKRTZYQ4MQSQ
+aws.secret_access_key=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
+s3.bucket=academia-legal
+s3.region=sa-east-1
