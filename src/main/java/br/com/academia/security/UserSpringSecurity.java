@@ -16,6 +16,7 @@ public class UserSpringSecurity implements UserDetails{
 	private Integer id;
 	private String email;
 	private String senha;
+	private String nome;
 	//Lista de perfis
 	private Collection<? extends GrantedAuthority> authorities;
 	
@@ -24,11 +25,12 @@ public class UserSpringSecurity implements UserDetails{
 		
 	}
 	
-	public UserSpringSecurity(Integer id, String email, String senha, Set<Perfil> perfis) {
+	public UserSpringSecurity(Integer id, String email, String senha, String nome, Set<Perfil> perfis) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.senha = senha;
+		this.nome = nome;
 		this.authorities = perfis.stream().map(perfil -> new SimpleGrantedAuthority(perfil.getDescricao())).collect(Collectors.toList());
 	}
 
@@ -50,6 +52,14 @@ public class UserSpringSecurity implements UserDetails{
 	@Override
 	public String getUsername() {
 		return email;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	@Override
@@ -76,5 +86,6 @@ public class UserSpringSecurity implements UserDetails{
 	{
 		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
 	}
+
 
 }

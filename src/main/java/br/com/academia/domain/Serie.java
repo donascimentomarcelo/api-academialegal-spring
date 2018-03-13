@@ -15,7 +15,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.academia.domain.enums.TipoSerie;
 
@@ -43,7 +42,6 @@ public class Serie  implements Serializable{
 	
 	@OneToOne
 	@JoinColumn(name="solicitacao_id")
-	@JsonIgnore
 	private Solicitacao solicitacao;
 	
 	public Serie() {

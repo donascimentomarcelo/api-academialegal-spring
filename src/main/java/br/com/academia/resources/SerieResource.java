@@ -1,12 +1,18 @@
 package br.com.academia.resources;
 
+import java.net.URI;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.academia.domain.Serie;
 import br.com.academia.services.SerieService;
@@ -39,5 +45,15 @@ public class SerieResource {
 	{
 		Page<Serie> list = serieService.findPageByUser(page, linesPerPage, orderBy, direction);
 		return ResponseEntity.ok().body(list);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Serie> create(@Valid @RequestBody Serie serie)
+	{
+		serie = serieService.save(serie);
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(serie.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 }

@@ -38,9 +38,19 @@ public class ItemSerie  implements Serializable{
 		return id.getSerie();
 	}
 	
+	public void setSerie(Serie serie)
+	{
+		id.setSerie(serie);
+	}
+	
 	public Exercicio getExercicio()
 	{
 		return id.getExercicio();
+	}
+	
+	public void setExercicio(Exercicio exercicio)
+	{
+		id.setExercicio(exercicio);
 	}
 
 	public ItemSeriePK getId() {

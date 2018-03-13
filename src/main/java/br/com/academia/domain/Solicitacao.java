@@ -40,6 +40,7 @@ public class Solicitacao implements Serializable{
 	private Usuario usuario;
 	
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="solicitacao")
+	@JsonIgnore
 	private Serie serie;
 	
 	public Solicitacao() {
