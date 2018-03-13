@@ -24,7 +24,6 @@ import br.com.academia.repositories.ItemSerieRepository;
 import br.com.academia.repositories.SerieRepository;
 import br.com.academia.repositories.SolicitacaoRepository;
 import br.com.academia.repositories.UsuarioRepository;
-import br.com.academia.services.S3Service;
 
 @SpringBootApplication
 public class AcademiaApplication implements CommandLineRunner{
@@ -50,8 +49,6 @@ public class AcademiaApplication implements CommandLineRunner{
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	@Autowired
-	private S3Service s3Service;
 		
 	public static void main(String[] args) {
 		SpringApplication.run(AcademiaApplication.class, args);
@@ -151,6 +148,5 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		itemSerieRepository.save(Arrays.asList(is1, is2, is3, is4, is5, is6, is7, is8, is9, is10, is11, is12));
 		
-		s3Service.uploadFile("C:\\Users\\Mestre\\Pictures\\Saved Pictures\\laravel.jpg");
 	}
 }

@@ -103,9 +103,12 @@ public class UsuarioResource {
 		return ResponseEntity.noContent().build();
 	}
 
-	public void uploadProfilePicture(MultipartFile multipartFile)
+	@RequestMapping(value="/picture",method = RequestMethod.POST)
+	public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile multipartFile)
 	{
+		URI uri = usuarioService.uploadProfilePicture(multipartFile);
 
+		return ResponseEntity.created(uri).build();
 	}
 
 }
