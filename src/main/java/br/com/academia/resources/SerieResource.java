@@ -32,7 +32,6 @@ public class SerieResource {
 			@RequestParam(value = "direction", defaultValue = "ASC")String direction)
 	{
 		Page<Serie> list = serieService.findPage(page, linesPerPage, orderBy, direction);
-	//	Page<UsuarioDTO> listDto = list.map(usuario -> new UsuarioDTO(usuario));
 		return ResponseEntity.ok().body(list);
 	}
 	

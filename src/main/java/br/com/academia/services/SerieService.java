@@ -62,7 +62,6 @@ public class SerieService {
 		serie.setTipoSerie(solicitacao.getTipoSerie());
 		serie = serieRepository.save(serie);
 		solicitacao.setStatusSerie(StatusSerie.CONCLUIDO);
-	//	solicitacaoRepository.save(serie.getSolicitacao());
 		solicitacaoRepository.save(solicitacao);
 		for(ItemSerie itemSerie: serie.getItens())
 		{
