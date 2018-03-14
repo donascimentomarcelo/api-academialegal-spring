@@ -39,6 +39,9 @@ public class UsuarioService {
 	
 	@Value("${img.prefix.client.profile}")
 	private String prefix;
+	
+	@Value("${img.profile.size}")
+	private Integer size;
 
 	public Usuario fromDTO(UsuarioDTO dto) 
 	{
@@ -159,6 +162,10 @@ public class UsuarioService {
 		}
 		
 		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		
+		jpgImage = imageService.cropSquare(jpgImage);
+		
+		jpgImage = imageService.resize(jpgImage, size);
 		
 		String fileName = prefix + usuarioLogado.getId() + ".jpg";
 		
