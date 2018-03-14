@@ -44,7 +44,6 @@ public class Usuario implements Serializable{
 	@OneToMany(mappedBy = "usuario")
 	private List<Solicitacao> solicitacoes = new ArrayList<>();
 	
-	private String imageUrl;
 	
 	public Usuario() {
 		super();
@@ -139,14 +138,6 @@ public class Usuario implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
 	}
 
 	

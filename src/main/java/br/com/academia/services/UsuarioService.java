@@ -1,8 +1,10 @@
 package br.com.academia.services;
 
+import java.awt.image.BufferedImage;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
@@ -10,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.academia.ImageService;
 import br.com.academia.domain.Usuario;
 import br.com.academia.domain.dto.PerfilDTO;
 import br.com.academia.domain.dto.UsuarioDTO;
@@ -30,6 +33,12 @@ public class UsuarioService {
 	
 	@Autowired
 	private S3Service s3Service;
+	
+	@Autowired
+	private ImageService imageService;
+	
+	@Value("${img.prefix.client.profile}")
+	private String prefix;
 
 	public Usuario fromDTO(UsuarioDTO dto) 
 	{
@@ -149,14 +158,10 @@ public class UsuarioService {
 			throw new AuthorizationException("Acesso negado");
 		}
 		
-		URI uri =  s3Service.uploadFile(multipartFile);
+		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
 		
-		Usuario usuario = usuarioRepository.findOne(usuarioLogado.getId());
+		String fileName = prefix + usuarioLogado.getId() + ".jpg";
 		
-		usuario.setImageUrl(uri.toString());
-		
-		usuarioRepository.save(usuario);
-		
-		return uri;
+		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 	}
 }
