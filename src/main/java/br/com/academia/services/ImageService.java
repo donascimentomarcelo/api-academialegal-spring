@@ -1,4 +1,4 @@
-package br.com.academia;
+package br.com.academia.services;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

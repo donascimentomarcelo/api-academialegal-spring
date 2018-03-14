@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.academia.ImageService;
 import br.com.academia.domain.Usuario;
 import br.com.academia.domain.dto.PerfilDTO;
 import br.com.academia.domain.dto.UsuarioDTO;
