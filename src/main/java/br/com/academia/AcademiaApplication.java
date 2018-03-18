@@ -60,7 +60,21 @@ public class AcademiaApplication implements CommandLineRunner{
 		Grupo g1 = new Grupo(null, "Peitoral");
 		Grupo g2 = new Grupo(null, "Tríceps");
 		Grupo g3 = new Grupo(null, "Bíceps");
-		Grupo g4 = new Grupo(null, "Costas");
+		Grupo g4 = new Grupo(null, "Dorsais");
+		Grupo g5 = new Grupo(null, "Lombares");
+		Grupo g6 = new Grupo(null, "Ante-braço");
+		Grupo g7 = new Grupo(null, "Ombro");
+		Grupo g9 = new Grupo(null, "Trapézio");
+		Grupo g10 = new Grupo(null, "Quadríceps");
+		Grupo g11 = new Grupo(null, "Posteriores coxas");
+		Grupo g12 = new Grupo(null, "Adutores");
+		Grupo g13 = new Grupo(null, "Glúteos");
+		Grupo g14 = new Grupo(null, "Panturrilha");
+		Grupo g15 = new Grupo(null, "Abdomen Infra");
+		Grupo g16 = new Grupo(null, "Abdomen Supra");
+		Grupo g17 = new Grupo(null, "Abdomen Oblico");
+		Grupo g18 = new Grupo(null, "Outros");
+		
 		
 		Exercicio ex1 = new Exercicio(null, "Supino reto", g1);
 		Exercicio ex2 = new Exercicio(null, "Supino 45º", g1);
@@ -107,7 +121,7 @@ public class AcademiaApplication implements CommandLineRunner{
 		u3.getSolicitacoes().addAll(Arrays.asList(s4));
 		
 		
-		grupoRepository.save(Arrays.asList(g1, g2, g3, g4));
+		grupoRepository.save(Arrays.asList(g1, g2, g3, g4, g5, g6, g7, g9, g10, g11, g12, g13, g14, g15, g16, g17, g18));
 		
 		exercicioRepository.save(
 				Arrays.asList(ex1, ex2, ex3, ex4, 
