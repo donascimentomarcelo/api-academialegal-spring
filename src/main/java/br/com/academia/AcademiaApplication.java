@@ -87,7 +87,7 @@ public class AcademiaApplication implements CommandLineRunner{
 		Exercicio ex8 = new Exercicio(null, "Triceps testa", g2);
 		
 		Exercicio ex9 = new Exercicio(null, "Bíceps rosca", g3);
-		Exercicio ex10 = new Exercicio(null, "Bíceps invertido", g3);
+		Exercicio ex10 = new Exercicio(null, "Bíceps canadense", g3);
 		Exercicio ex11 = new Exercicio(null, "Bíceps unilateral", g3);
 		Exercicio ex12 = new Exercicio(null, "Bíceps banco", g3);
 		
@@ -96,10 +96,85 @@ public class AcademiaApplication implements CommandLineRunner{
 		Exercicio ex15 = new Exercicio(null, "Puxada fechada", g4);
 		Exercicio ex16 = new Exercicio(null, "Puxada aberta", g4);
 		
+		Exercicio ex17 = new Exercicio(null, "Alongamento de coluna", g5);
+		Exercicio ex18 = new Exercicio(null, "Rolamento de joelhos", g5);
+		Exercicio ex19 = new Exercicio(null, "Extensão", g5);
+		Exercicio ex20 = new Exercicio(null, "Fortalecimento abdominal profundo", g5);
+		
+		Exercicio ex21 = new Exercicio(null, "Bíceps invertido", g6);
+		Exercicio ex22 = new Exercicio(null, "Bíceps martelo", g6);
+		Exercicio ex23 = new Exercicio(null, "Rosca punho", g6);
+		Exercicio ex24 = new Exercicio(null, "Rosca punho invertido", g6);
+		
+		Exercicio ex25 = new Exercicio(null, "Elevação lateral", g7);
+		Exercicio ex26 = new Exercicio(null, "Elevação frontal", g7);
+		Exercicio ex27 = new Exercicio(null, "Desenvolvimento com barra", g7);
+		Exercicio ex28 = new Exercicio(null, "Desenvolvimento com halteres", g7);
+		
+		Exercicio ex29 = new Exercicio(null, "Encolhimento com halteres", g9);
+		Exercicio ex30 = new Exercicio(null, "Encolhimento com barra pela frente", g9);
+		Exercicio ex31 = new Exercicio(null, "Encolhimento com barra por trás", g9);
+		Exercicio ex32 = new Exercicio(null, "Remada alta com barra", g9);
+		
+		Exercicio ex33 = new Exercicio(null, "Agachamento", g10);
+		Exercicio ex34 = new Exercicio(null, "Leg Press", g10);
+		Exercicio ex35 = new Exercicio(null, "Agachamento frontal", g10);
+		Exercicio ex36 = new Exercicio(null, "Cadeira extensora", g10);
+		
+		Exercicio ex37 = new Exercicio(null, "Rosca de perna deitado", g11);
+		Exercicio ex38 = new Exercicio(null, "Levantamento terra romeno", g11);
+		Exercicio ex39 = new Exercicio(null, "Levantamento terra sumô", g11);
+		Exercicio ex40 = new Exercicio(null, "Giro com kettlebell", g11);
+		
+		Exercicio ex41 = new Exercicio(null, "Agachamento de adutor com haltere", g12);
+		Exercicio ex42 = new Exercicio(null, "Adutores em polia baixa", g12);
+		Exercicio ex43 = new Exercicio(null, "Agachamento plié", g12);
+		Exercicio ex44 = new Exercicio(null, "Máquina adutora", g12);
+		
+		Exercicio ex45 = new Exercicio(null, "Ponte com uma perna só", g13);
+		Exercicio ex46 = new Exercicio(null, "Avanço com halteres", g13);
+		Exercicio ex47 = new Exercicio(null, "Coice para glúteos", g13);
+		Exercicio ex48 = new Exercicio(null, "Coice no cabo", g13);
+		
+		Exercicio ex49 = new Exercicio(null, "Panturrilha em pé", g14);
+		Exercicio ex50 = new Exercicio(null, "Panturrilha no leg press", g14);
+		Exercicio ex51 = new Exercicio(null, "Elevação de panturrilha em pé", g14);
+		Exercicio ex52 = new Exercicio(null, "Elevação de panturrilha com uma perna só", g14);
+		
+		Exercicio ex53 = new Exercicio(null, "Abdominais", g15);
+		Exercicio ex54 = new Exercicio(null, "Tesoura", g15);
+		Exercicio ex55 = new Exercicio(null, "Abdominais invertido no banco declinado", g15);
+		Exercicio ex56 = new Exercicio(null, "Elevação das pernas na barra", g15);
+		
+		Exercicio ex57 = new Exercicio(null, "Abdominal Supra na prancha", g16);
+		Exercicio ex58 = new Exercicio(null, "Abdominal supra no chão", g16);
+		Exercicio ex59 = new Exercicio(null, "Abdominal na bola Suíça", g16);
+		Exercicio ex60 = new Exercicio(null, "Abdominal no pulley", g16);
+		
+		Exercicio ex61 = new Exercicio(null, "Prancha Lateral", g17);
+		Exercicio ex62 = new Exercicio(null, "Inclinação lateral com Halteres", g17);
+		Exercicio ex63 = new Exercicio(null, "Abdominal Bicicleta", g17);
+		Exercicio ex64 = new Exercicio(null, "Abdominal pendurado lateral", g17);
+		
+		Exercicio ex65 = new Exercicio(null, "Aeróbico", g18);
+		
 		g1.getExercicios().addAll(Arrays.asList(ex1, ex2, ex3, ex4));
 		g2.getExercicios().addAll(Arrays.asList(ex5, ex6, ex7, ex8));
 		g3.getExercicios().addAll(Arrays.asList(ex9, ex10, ex11, ex12));
 		g4.getExercicios().addAll(Arrays.asList(ex13, ex14, ex15, ex16));
+		g5.getExercicios().addAll(Arrays.asList(ex17, ex18, ex19, ex20));
+		g6.getExercicios().addAll(Arrays.asList(ex21, ex22, ex23, ex24));
+		g7.getExercicios().addAll(Arrays.asList(ex25, ex26, ex27, ex28));
+		g9.getExercicios().addAll(Arrays.asList(ex29, ex30, ex31, ex32));
+		g10.getExercicios().addAll(Arrays.asList(ex33, ex34, ex35, ex36));
+		g11.getExercicios().addAll(Arrays.asList(ex37, ex38, ex39, ex40));
+		g12.getExercicios().addAll(Arrays.asList(ex41, ex42, ex43, ex44));
+		g13.getExercicios().addAll(Arrays.asList(ex45, ex46, ex47, ex48));
+		g14.getExercicios().addAll(Arrays.asList(ex49, ex50, ex51, ex52));
+		g15.getExercicios().addAll(Arrays.asList(ex53, ex54, ex55, ex56));
+		g16.getExercicios().addAll(Arrays.asList(ex57, ex58, ex59, ex60));
+		g17.getExercicios().addAll(Arrays.asList(ex61,ex62,  ex63, ex64));
+		g18.getExercicios().addAll(Arrays.asList(ex65));
 		
 		Usuario u1 = new Usuario(null, "marcelojunin2010@hotmail.com", "Marcelo Nascimento", bCryptPasswordEncoder.encode("123"));
 		Usuario u2 = new Usuario(null, "angela@hotmail.com", "Angela Silva", bCryptPasswordEncoder.encode("123"));
@@ -121,13 +196,31 @@ public class AcademiaApplication implements CommandLineRunner{
 		u3.getSolicitacoes().addAll(Arrays.asList(s4));
 		
 		
-		grupoRepository.save(Arrays.asList(g1, g2, g3, g4, g5, g6, g7, g9, g10, g11, g12, g13, g14, g15, g16, g17, g18));
+		grupoRepository.save(
+				Arrays.asList(g1, g2, g3, g4, 
+							  g5, g6, g7, g9, 
+							  g10, g11, g12, g13,
+							  g14, g15, g16, g17, 
+							  g18));
 		
 		exercicioRepository.save(
 				Arrays.asList(ex1, ex2, ex3, ex4, 
 							  ex5, ex6, ex7, ex8,
 							  ex9, ex10, ex11, ex12,
-							  ex13, ex14, ex15, ex16));
+							  ex13, ex14, ex15, ex16,
+							  ex17, ex18, ex19, ex20,
+							  ex21, ex22, ex23, ex24,
+							  ex25, ex26, ex27, ex28,
+							  ex29, ex30, ex31, ex32,
+							  ex33, ex34, ex35, ex36,
+							  ex37, ex38, ex39, ex40,
+							  ex41, ex42, ex43, ex44,
+							  ex45, ex46, ex47, ex48,
+							  ex49, ex50, ex51, ex52,
+							  ex53, ex54, ex55, ex56,
+							  ex57, ex58, ex59, ex60,
+							  ex61,ex62,  ex63, ex64,
+							  ex65));
 		
 		usuarioRepository.save(Arrays.asList(u1, u2, u3, u4));
 		
