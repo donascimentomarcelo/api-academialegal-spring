@@ -128,7 +128,7 @@ public class UsuarioService {
 		}
 		else if(dto.getPerfil() == 2)
 		{
-			usuario.removePerfil(Perfil.CLIENTE);
+			usuario.removePerfil(Perfil.ALUNO);
 		}
 		else if(dto.getPerfil() == 3)
 		{

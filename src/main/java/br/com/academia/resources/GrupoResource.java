@@ -46,7 +46,7 @@ public class GrupoResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@RequestMapping(value = "/{id}/exercicios")
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/exercicios")
 	public ResponseEntity<List<Exercicio>> findExercicioByGrupo(@PathVariable Integer id)
 	{
 		List<Exercicio> exercicio = exercicioService.findExercicioByGrupo(id);

@@ -30,7 +30,7 @@ public class UsuarioInsertValidator implements ConstraintValidator<UsuarioInsert
 		
 		if(usuarioRepository.findByEmail(objDto.getEmail()) != null)
 		{
-			list.add(new FieldMessage("email","o e-mail já existe!"));
+			list.add(new FieldMessage("email","O e-mail já existe!"));
 		}
 		
 		

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.academia.domain.Usuario;
 import br.com.academia.domain.dto.PerfilDTO;
 import br.com.academia.domain.dto.UsuarioDTO;
+import br.com.academia.domain.dto.UsuarioListDTO;
 import br.com.academia.services.UsuarioService;
 
 @RestController
@@ -29,16 +30,17 @@ public class UsuarioResource {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@SuppressWarnings("rawtypes")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<Page<UsuarioDTO>> listPerPage(
+	public ResponseEntity<Page<UsuarioListDTO>> listPerPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
 			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy, 
 			@RequestParam(value = "direction", defaultValue = "ASC")String direction)
 	{
 		Page<Usuario> list = usuarioService.findPage(page, linesPerPage, orderBy, direction);
-		Page<UsuarioDTO> listDto = list.map(usuario -> new UsuarioDTO(usuario));
+		Page<UsuarioListDTO> listDto = list.map(usuario -> new UsuarioListDTO(usuario));
 		return ResponseEntity.ok().body(listDto);
 	}
 	

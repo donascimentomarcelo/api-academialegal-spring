@@ -3,7 +3,7 @@ package br.com.academia.domain.enums;
 public enum Perfil {
 	
 	ADMIN(1, "ROLE_ADMIN"),
-	CLIENTE(2, "ROLE_CLIENTE"),
+	ALUNO(2, "ROLE_ALUNO"),
 	PROFESSOR(3, "ROLE_PROFESSOR");
 	
 	private int codigo;

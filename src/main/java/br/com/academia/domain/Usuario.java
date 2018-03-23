@@ -55,7 +55,7 @@ public class Usuario implements Serializable{
 		this.email = email;
 		this.nome = nome;
 		this.senha = senha;
-		addPerfil(Perfil.CLIENTE);
+		addPerfil(Perfil.ALUNO);
 	}
 
 
