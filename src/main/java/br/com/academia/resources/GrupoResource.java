@@ -3,6 +3,7 @@ package br.com.academia.resources;
 import java.net.URI;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.academia.domain.Exercicio;
 import br.com.academia.domain.Grupo;
+import br.com.academia.domain.dto.GrupoDTO;
 import br.com.academia.services.ExercicioService;
 import br.com.academia.services.GrupoService;
 
@@ -52,5 +54,17 @@ public class GrupoResource {
 		List<Exercicio> exercicio = exercicioService.findExercicioByGrupo(id);
 		
 		return ResponseEntity.ok().body(exercicio);
+	}
+	
+	@RequestMapping(value = "/{id}/grupoByExercicio", method = RequestMethod.GET)
+	public ResponseEntity<GrupoDTO> findOneGrupoExercicio(@PathVariable Integer id)
+	{
+		Grupo grupo = grupoService.findOneGrupoExercicio(id);
+		
+		ModelMapper modelMapper = new ModelMapper();
+		
+		GrupoDTO dto = modelMapper.map(grupo, GrupoDTO.class);
+		
+		return ResponseEntity.ok().body(dto);
 	}
 }
