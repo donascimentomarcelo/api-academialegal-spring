@@ -1,6 +1,7 @@
 package br.com.academia.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -69,6 +70,14 @@ public class ExercicioResource {
 	public ResponseEntity<Exercicio> findOne(@PathVariable Integer id)
 	{
 		Exercicio exercicio = exercicioService.find(id);
+		
+		return ResponseEntity.ok().body(exercicio);
+	}
+	
+	@RequestMapping(value="/name", method = RequestMethod.GET)
+	public ResponseEntity<List<Exercicio>> findByName(@RequestParam(value="name") String nome)
+	{
+		List<Exercicio> exercicio = exercicioService.findByName(nome);
 		
 		return ResponseEntity.ok().body(exercicio);
 	}

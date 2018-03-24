@@ -96,4 +96,16 @@ public class ExercicioService {
 		PageRequest pageRequest = new PageRequest(page,  linesPerPage, Direction.valueOf(direction), orderBy);
 		return exercicioRepository.findAll(pageRequest);
 	}
+
+	public List<Exercicio> findByName(String nome) {
+		
+		List<Exercicio> exercicio = exercicioRepository.findByNomeContainingIgnoreCase(nome);
+		
+		if(exercicio.isEmpty())
+		{
+			throw new ObjectNotFoundException("Não existe exercicio com esse(s) caracteres: " + nome);
+		}
+		
+		return exercicio;
+	}
 }

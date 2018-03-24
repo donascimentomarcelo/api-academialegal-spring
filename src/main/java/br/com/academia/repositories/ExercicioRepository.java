@@ -14,4 +14,6 @@ public interface ExercicioRepository extends JpaRepository<Exercicio, Integer>{
 	
 	@Query("Select ex from Exercicio ex WHERE ex.grupo.id = :grupo_id")
 	public List<Exercicio> findExercicioByGrupo(@Param("grupo_id") Integer grupo_id);
+
+	public List<Exercicio> findByNomeContainingIgnoreCase(String nome);
 }
