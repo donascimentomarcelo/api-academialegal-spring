@@ -101,11 +101,6 @@ public class ExercicioService {
 		
 		List<Exercicio> exercicio = exercicioRepository.findByNomeContainingIgnoreCase(nome);
 		
-		if(exercicio.isEmpty())
-		{
-			throw new ObjectNotFoundException("Não existe exercicio com esse(s) caracteres: " + nome);
-		}
-		
 		return exercicio;
 	}
 }
