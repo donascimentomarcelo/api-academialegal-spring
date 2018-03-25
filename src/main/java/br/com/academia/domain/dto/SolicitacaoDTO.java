@@ -29,7 +29,9 @@ public class SolicitacaoDTO implements Serializable{
 	private String justificativa;
 	@JsonIgnore
 	private Usuario usuario;
+	@JsonIgnore
 	private Serie serie;
+	private String solicitante;
 	
 	public SolicitacaoDTO() {
 		super();
@@ -46,7 +48,7 @@ public class SolicitacaoDTO implements Serializable{
 		justificativa = solicitacao.getJustificativa();
 		usuario = solicitacao.getUsuario();
 		serie=solicitacao.getSerie();
-	
+		solicitante=solicitacao.getSolicitante();
 	}
 
 
@@ -106,6 +108,14 @@ public class SolicitacaoDTO implements Serializable{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public String getSolicitante() {
+		return solicitante;
+	}
+
+	public void setSolicitante(String solicitante) {
+		this.solicitante = solicitante;
+	}
 
 	public Serie getSerie() {
 		return serie;
@@ -114,8 +124,7 @@ public class SolicitacaoDTO implements Serializable{
 	public void setSerie(Serie serie) {
 		this.serie = serie;
 	}
-	
-	
+
 	
 	
 }

@@ -42,13 +42,14 @@ public class Solicitacao implements Serializable{
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="solicitacao")
 	@JsonIgnore
 	private Serie serie;
+	private String solicitante;
 	
 	public Solicitacao() {
 		super();
 	}
 
 
-	public Solicitacao(Integer id, Date dataSolicitacao, TipoSerie tipoSerie, StatusSerie statusSerie, String descricao,String justificativa, Usuario usuario) {
+	public Solicitacao(Integer id, Date dataSolicitacao, TipoSerie tipoSerie, StatusSerie statusSerie, String descricao,String justificativa, Usuario usuario, String solicitante) {
 		super();
 		this.id = id;
 		this.dataSolicitacao = dataSolicitacao;
@@ -57,6 +58,7 @@ public class Solicitacao implements Serializable{
 		this.descricao = descricao;
 		this.justificativa = justificativa;
 		this.usuario = usuario;
+		this.solicitante = solicitante;
 	}
 
 
@@ -129,6 +131,15 @@ public class Solicitacao implements Serializable{
 		this.usuario = usuario;
 	}
 	
+
+	public String getSolicitante() {
+		return solicitante;
+	}
+
+
+	public void setSolicitante(String solicitante) {
+		this.solicitante = solicitante;
+	}
 	
 	public Serie getSerie() {
 		return serie;
@@ -138,6 +149,8 @@ public class Solicitacao implements Serializable{
 	public void setSerie(Serie serie) {
 		this.serie = serie;
 	}
+	
+
 
 
 	@Override
@@ -165,6 +178,5 @@ public class Solicitacao implements Serializable{
 			return false;
 		return true;
 	}
-
 	
 }

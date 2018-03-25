@@ -51,12 +51,15 @@ public class SolicitacaoService {
 	}
 
 	public Solicitacao fromDTO(SolicitacaoDTO dto) {
-		return new Solicitacao(dto.getId(), dto.getDataSolicitacao(), dto.getTipoSerie(), dto.getStatusSerie(), dto.getDescricao(), dto.getJustificativa(), dto.getUsuario());
+		return new Solicitacao(dto.getId(), dto.getDataSolicitacao(), dto.getTipoSerie(), dto.getStatusSerie(), dto.getDescricao(), dto.getJustificativa(), dto.getUsuario(), null);
 	}
 
 	public Solicitacao save(Solicitacao solicitacao) {
 		
+		UserSpringSecurity usuarioLogado = UserService.authenticated();
+		
 		solicitacao.setDataSolicitacao(new Date());
+		solicitacao.setSolicitante(usuarioLogado.getNome());
 		
 		return solicitacaoRepository.save(solicitacao);
 	}
@@ -74,7 +77,7 @@ public class SolicitacaoService {
 	}
 
 	public Solicitacao fromDTO(RejeitarDTO dto) {
-		return new Solicitacao(dto.getId(), null, null, null, null, dto.getJustificativa(), null);
+		return new Solicitacao(dto.getId(), null, null, null, null, dto.getJustificativa(), null, null);
 	}
 
 	public Page<Solicitacao> findPageSolicitacaoPendente(Integer page, Integer linesPerPage, String orderBy,
