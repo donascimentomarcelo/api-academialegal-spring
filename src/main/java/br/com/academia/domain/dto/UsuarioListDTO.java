@@ -1,5 +1,6 @@
 package br.com.academia.domain.dto;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import org.hibernate.validator.constraints.Email;
@@ -9,7 +10,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import br.com.academia.domain.Usuario;
 import br.com.academia.domain.enums.Perfil;
 
-public class UsuarioListDTO<Perfis> {
+public class UsuarioListDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	

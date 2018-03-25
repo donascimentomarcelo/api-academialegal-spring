@@ -2,6 +2,7 @@ package br.com.academia.services;
 
 import java.awt.image.BufferedImage;
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -169,5 +170,12 @@ public class UsuarioService {
 		String fileName = prefix + usuarioLogado.getId() + ".jpg";
 		
 		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
+	}
+
+	public List<Usuario> findByName(String nome) {
+		
+		List<Usuario> usuario = usuarioRepository.findByNomeContainingIgnoreCase(nome);
+		
+		return usuario;
 	}
 }

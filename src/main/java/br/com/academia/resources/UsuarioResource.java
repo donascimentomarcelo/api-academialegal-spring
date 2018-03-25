@@ -1,6 +1,8 @@
 package br.com.academia.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -30,7 +32,6 @@ public class UsuarioResource {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@SuppressWarnings("rawtypes")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Page<UsuarioListDTO>> listPerPage(
@@ -111,6 +112,16 @@ public class UsuarioResource {
 		URI uri = usuarioService.uploadProfilePicture(multipartFile);
 
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/name", method = RequestMethod.GET)
+	public ResponseEntity<List<UsuarioListDTO>> findByName(@RequestParam(value="name") String nome)
+	{
+		List<Usuario> list = usuarioService.findByName(nome);
+		
+		List<UsuarioListDTO> listDto = list.stream().map(usuario -> new UsuarioListDTO(usuario)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(listDto);
 	}
 
 }
