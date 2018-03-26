@@ -85,6 +85,13 @@ public class SolicitacaoService {
 		PageRequest pageRequest = new PageRequest(page,  linesPerPage, Direction.valueOf(direction), orderBy);
 		return solicitacaoRepository.findPageSolicitacaoPendente(pageRequest);
 	}
+
+	public List<Solicitacao> findBySolicitante(String nome) {
+		
+		List<Solicitacao> solicitacao = solicitacaoRepository.findBySolicitanteContainingIgnoreCase(nome);
+		
+		return solicitacao;
+	}
 	
 
 }

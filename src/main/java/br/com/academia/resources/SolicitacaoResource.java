@@ -2,6 +2,7 @@ package br.com.academia.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -92,5 +93,15 @@ public class SolicitacaoResource {
 		Page<Solicitacao> list = solicitacaoService.findPageSolicitacaoPendente(page, linesPerPage, orderBy, direction);
 		Page<SolicitacaoPendenteDTO> listDTO = list.map(solicitacao -> new SolicitacaoPendenteDTO(solicitacao));
 		return ResponseEntity.ok().body(listDTO);
+	}
+	
+	@RequestMapping(value="/name", method = RequestMethod.GET)
+	public ResponseEntity<List<SolicitacaoDTO>> findBySolicitante(@RequestParam(value="name") String nome)
+	{
+		List<Solicitacao> list = solicitacaoService.findBySolicitante(nome);
+		
+		List<SolicitacaoDTO> listDto = list.stream().map(solicitacao -> new SolicitacaoDTO(solicitacao)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(listDto);
 	}
 }
