@@ -13,6 +13,7 @@ import br.com.academia.domain.Solicitacao;
 import br.com.academia.domain.dto.RejeitarDTO;
 import br.com.academia.domain.dto.SolicitacaoDTO;
 import br.com.academia.domain.enums.StatusSerie;
+import br.com.academia.exceptions.DataIntegrityException;
 import br.com.academia.exceptions.ObjectNotFoundException;
 import br.com.academia.repositories.SolicitacaoRepository;
 import br.com.academia.security.UserSpringSecurity;
@@ -67,6 +68,11 @@ public class SolicitacaoService {
 	public Solicitacao rejeitar(Integer id, String justificativa) {
 		
 		Solicitacao solicitacao = find(id);
+		
+		if(solicitacao.getStatusSerie() != StatusSerie.PENDENTE)
+		{
+			throw new DataIntegrityException("O registro já foi "+ solicitacao.getStatusSerie().getDescricao().toLowerCase());
+		}
 		
 		solicitacao.setStatusSerie(StatusSerie.REJEITADO);
 		solicitacao.setJustificativa(justificativa);

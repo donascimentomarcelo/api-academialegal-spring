@@ -45,6 +45,14 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
 	}
 	
+	@ExceptionHandler(DataIntegrityException.class)
+	public ResponseEntity<StandardError> dataIntegrity(DataIntegrityException exception, HttpServletRequest request)
+	{
+		StandardError error = new StandardError(HttpStatus.BAD_REQUEST.value(), System.currentTimeMillis(), "Operação não realizada", exception.getMessage(), request.getRequestURI());
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
+	
 	@ExceptionHandler(FileException.class)
 	public ResponseEntity<StandardError> file(FileException exception, HttpServletRequest request)
 	{

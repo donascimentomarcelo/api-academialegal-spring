@@ -186,10 +186,12 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Solicitacao s1 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u1, u1.getNome());
-		Solicitacao s2 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.DEFINICAO, StatusSerie.CONCLUIDO, "Loren ipsun ...", null, u2, u2.getNome());
-		Solicitacao s3 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2, u2.getNome());
-		Solicitacao s4 = new Solicitacao(null, format.parse("08/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
+		Solicitacao s1 = new Solicitacao(null, format.parse("01/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.CONCLUIDO,
+									"Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica", 
+									"Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica", u1, u1.getNome());
+		Solicitacao s2 = new Solicitacao(null, format.parse("15/02/2018"), TipoSerie.DEFINICAO, StatusSerie.CONCLUIDO, "Loren ipsun ...", null, u2, u2.getNome());
+		Solicitacao s3 = new Solicitacao(null, format.parse("10/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2, u2.getNome());
+		Solicitacao s4 = new Solicitacao(null, format.parse("26/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
 		
 		u1.getSolicitacoes().addAll(Arrays.asList(s1));
 		u2.getSolicitacoes().addAll(Arrays.asList(s2, s3));

@@ -3,7 +3,7 @@ package br.com.academia.domain.enums;
 public enum StatusSerie {
 	
 	PENDENTE(1, "Pendente"),
-	CONCLUIDO(2, "Concluido"),
+	CONCLUIDO(2, "Concluído"),
 	REJEITADO(3, "Rejeitado");
 	
 	private int codigo;

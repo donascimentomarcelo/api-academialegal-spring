@@ -37,7 +37,7 @@ public class SolicitacaoResource {
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
 			@RequestParam(value = "orderBy", defaultValue = "dataSolicitacao") String orderBy, 
-			@RequestParam(value = "direction", defaultValue = "ASC")String direction)
+			@RequestParam(value = "direction", defaultValue = "DESC")String direction)
 	{
 		Page<Solicitacao> list = solicitacaoService.findPage(page, linesPerPage, orderBy, direction);
 		Page<SolicitacaoDTO> listDTO = list.map(solicitacao -> new SolicitacaoDTO(solicitacao));
