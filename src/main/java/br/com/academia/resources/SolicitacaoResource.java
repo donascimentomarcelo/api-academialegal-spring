@@ -61,10 +61,8 @@ public class SolicitacaoResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<SolicitacaoDTO> create(@Valid @RequestBody SolicitacaoDTO dto)
+	public ResponseEntity<Solicitacao> create(@Valid @RequestBody Solicitacao solicitacao)
 	{
-		Solicitacao solicitacao = solicitacaoService.fromDTO(dto);
-		
 		solicitacao = solicitacaoService.save(solicitacao);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

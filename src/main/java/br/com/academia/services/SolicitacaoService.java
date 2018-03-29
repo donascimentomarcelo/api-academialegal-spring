@@ -10,12 +10,14 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.academia.domain.Solicitacao;
+import br.com.academia.domain.Usuario;
 import br.com.academia.domain.dto.RejeitarDTO;
 import br.com.academia.domain.dto.SolicitacaoDTO;
 import br.com.academia.domain.enums.StatusSerie;
 import br.com.academia.exceptions.DataIntegrityException;
 import br.com.academia.exceptions.ObjectNotFoundException;
 import br.com.academia.repositories.SolicitacaoRepository;
+import br.com.academia.repositories.UsuarioRepository;
 import br.com.academia.security.UserSpringSecurity;
 
 @Service
@@ -23,6 +25,9 @@ public class SolicitacaoService {
 
 	@Autowired
 	private SolicitacaoRepository solicitacaoRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
 	public Page<Solicitacao> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) 
 	{
@@ -59,8 +64,13 @@ public class SolicitacaoService {
 		
 		UserSpringSecurity usuarioLogado = UserService.authenticated();
 		
+		Usuario usuario = usuarioRepository.findOne(usuarioLogado.getId());
+		
 		solicitacao.setDataSolicitacao(new Date());
 		solicitacao.setSolicitante(usuarioLogado.getNome());
+		solicitacao.setStatusSerie(StatusSerie.PENDENTE);
+		solicitacao.setJustificativa(null);
+		solicitacao.setUsuario(usuario);
 		
 		return solicitacaoRepository.save(solicitacao);
 	}
@@ -71,7 +81,7 @@ public class SolicitacaoService {
 		
 		if(solicitacao.getStatusSerie() != StatusSerie.PENDENTE)
 		{
-			throw new DataIntegrityException("O registro já foi "+ solicitacao.getStatusSerie().getDescricao().toLowerCase());
+			throw new DataIntegrityException("O registro já foi "+ solicitacao.getStatusSerie().getDescricao().toLowerCase()+" anteriormente");
 		}
 		
 		solicitacao.setStatusSerie(StatusSerie.REJEITADO);
