@@ -182,6 +182,8 @@ public class AcademiaApplication implements CommandLineRunner{
 		Usuario u4 = new Usuario(null, "celia@hotmail.com", "Célia Alves", bCryptPasswordEncoder.encode("123"));
 		
 		u1.addPerfil(Perfil.ADMIN);
+		u1.addPerfil(Perfil.PROFESSOR);
+		u1.removePerfil(Perfil.ALUNO);
 		u3.addPerfil(Perfil.PROFESSOR);
 		
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");

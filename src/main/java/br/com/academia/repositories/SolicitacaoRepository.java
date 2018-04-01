@@ -14,7 +14,7 @@ import br.com.academia.domain.Solicitacao;
 @Repository
 public interface SolicitacaoRepository extends JpaRepository<Solicitacao, Integer>{
 
-	@Query("SELECT sol from Solicitacao sol WHERE sol.usuario.id = :usuario_logado")
+	@Query("SELECT sol from Solicitacao sol WHERE sol.usuario.id = :usuario_logado ORDER BY sol.dataSolicitacao DESC")
 	public List<Solicitacao> findByUser(@Param("usuario_logado") Integer usuario_logado);
 
 	@Query("SELECT sol from Solicitacao sol WHERE sol.statusSerie = 1")

@@ -14,7 +14,7 @@ public enum TipoSerie {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
-
+	//@JsonValue
 	public int getCodigo() {
 		return codigo;
 	}
@@ -22,7 +22,7 @@ public enum TipoSerie {
 	public String getDescricao() {
 		return descricao;
 	}
-
+	//@JsonCreator
 	public static TipoSerie toEnum(Integer codigo)
 	{
 		if(codigo == null)
