@@ -74,10 +74,16 @@ public class SerieService {
 		return serie;
 	}
 
-	public List<Serie> findBySolicitante(String nome) {
-		
+	public List<Serie> findBySolicitante(String nome) 
+	{	
 		List<Serie> list = serieRepository.findBySolicitante(nome);
 		return list;
+	}
+
+	public Serie findOne(Integer id) 
+	{
+		Serie serie = serieRepository.findOne(id);
+		return serie;
 	}
 
 }
