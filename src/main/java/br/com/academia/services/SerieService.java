@@ -1,6 +1,7 @@
 package br.com.academia.services;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,6 +72,12 @@ public class SerieService {
 		itemSerieRepository.save(serie.getItens());
 		
 		return serie;
+	}
+
+	public List<Serie> findBySolicitante(String nome) {
+		
+		List<Serie> list = serieRepository.findBySolicitante(nome);
+		return list;
 	}
 
 }

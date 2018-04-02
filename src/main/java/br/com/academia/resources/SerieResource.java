@@ -1,6 +1,7 @@
 package br.com.academia.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -54,5 +55,13 @@ public class SerieResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(serie.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/name", method = RequestMethod.GET)
+	public ResponseEntity<List<Serie>> findBySolicitante(@RequestParam(value="name") String nome)
+	{
+		List<Serie> list = serieService.findBySolicitante(nome);
+		
+		return ResponseEntity.ok().body(list);
 	}
 }
