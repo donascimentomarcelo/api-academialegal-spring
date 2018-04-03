@@ -20,6 +20,6 @@ public interface SolicitacaoRepository extends JpaRepository<Solicitacao, Intege
 	@Query("SELECT sol from Solicitacao sol WHERE sol.statusSerie = 1")
 	public Page<Solicitacao> findPageSolicitacaoPendente(Pageable pageRequest);
 
-	public List<Solicitacao> findBySolicitanteContainingIgnoreCase(String nome);
+	public List<Solicitacao> findBySolicitanteContainingIgnoreCaseOrderByDataSolicitacaoDesc(String nome);
 
 }

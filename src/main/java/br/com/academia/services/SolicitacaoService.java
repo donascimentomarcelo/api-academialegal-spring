@@ -104,7 +104,7 @@ public class SolicitacaoService {
 
 	public List<Solicitacao> findBySolicitante(String nome) {
 		
-		List<Solicitacao> solicitacao = solicitacaoRepository.findBySolicitanteContainingIgnoreCase(nome);
+		List<Solicitacao> solicitacao = solicitacaoRepository.findBySolicitanteContainingIgnoreCaseOrderByDataSolicitacaoDesc(nome);
 		
 		return solicitacao;
 	}
