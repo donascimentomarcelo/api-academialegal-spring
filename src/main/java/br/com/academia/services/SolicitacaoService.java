@@ -108,6 +108,19 @@ public class SolicitacaoService {
 		
 		return solicitacao;
 	}
+
+	public Page<Solicitacao> findPageSolicitacaoConcluido(Integer page, Integer linesPerPage, String orderBy,
+			String direction) 
+	{
+		PageRequest pageRequest = new PageRequest(page,  linesPerPage, Direction.valueOf(direction), orderBy);
+		return solicitacaoRepository.findPageSolicitacaoConcluido(pageRequest);
+	}
+
+	public Page<Solicitacao> findPageSolicitacaoRejeitado(Integer page, Integer linesPerPage, String orderBy,
+			String direction) {
+		PageRequest pageRequest = new PageRequest(page,  linesPerPage, Direction.valueOf(direction), orderBy);
+		return solicitacaoRepository.findPageSolicitacaoRejeitado(pageRequest);
+	}
 	
 
 }

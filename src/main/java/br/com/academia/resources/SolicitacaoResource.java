@@ -79,7 +79,7 @@ public class SolicitacaoResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
 	@RequestMapping(value="/pendentes",method = RequestMethod.GET)
 	public ResponseEntity<Page<SolicitacaoDTO>> listPerPageSolicitacaoPendente(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
@@ -88,6 +88,32 @@ public class SolicitacaoResource {
 			@RequestParam(value = "direction", defaultValue = "DESC")String direction)
 	{
 		Page<Solicitacao> list = solicitacaoService.findPageSolicitacaoPendente(page, linesPerPage, orderBy, direction);
+		Page<SolicitacaoDTO> listDTO = list.map(solicitacao -> new SolicitacaoDTO(solicitacao));
+		return ResponseEntity.ok().body(listDTO);
+	}
+	
+	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
+	@RequestMapping(value="/concluido",method = RequestMethod.GET)
+	public ResponseEntity<Page<SolicitacaoDTO>> listPerPageSolicitacaoConcluido(
+			@RequestParam(value = "page", defaultValue = "0") Integer page, 
+			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
+			@RequestParam(value = "orderBy", defaultValue = "dataSolicitacao") String orderBy, 
+			@RequestParam(value = "direction", defaultValue = "DESC")String direction)
+	{
+		Page<Solicitacao> list = solicitacaoService.findPageSolicitacaoConcluido(page, linesPerPage, orderBy, direction);
+		Page<SolicitacaoDTO> listDTO = list.map(solicitacao -> new SolicitacaoDTO(solicitacao));
+		return ResponseEntity.ok().body(listDTO);
+	}
+	
+	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
+	@RequestMapping(value="/rejeitado",method = RequestMethod.GET)
+	public ResponseEntity<Page<SolicitacaoDTO>> listPerPageSolicitacaoRejeitado(
+			@RequestParam(value = "page", defaultValue = "0") Integer page, 
+			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
+			@RequestParam(value = "orderBy", defaultValue = "dataSolicitacao") String orderBy, 
+			@RequestParam(value = "direction", defaultValue = "DESC")String direction)
+	{
+		Page<Solicitacao> list = solicitacaoService.findPageSolicitacaoRejeitado(page, linesPerPage, orderBy, direction);
 		Page<SolicitacaoDTO> listDTO = list.map(solicitacao -> new SolicitacaoDTO(solicitacao));
 		return ResponseEntity.ok().body(listDTO);
 	}
