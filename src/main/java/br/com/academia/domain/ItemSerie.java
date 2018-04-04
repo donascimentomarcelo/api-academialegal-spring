@@ -18,18 +18,21 @@ public class ItemSerie  implements Serializable{
 	private String repeticoes;
 	private String letra;
 	private String observacao;
+	private Integer ordenation; 
 	
+
 	public ItemSerie() {
 		super();
 	}
 
-	public ItemSerie(Serie serie, Exercicio exercicio, String repeticoes, String letra, String observacao) {
+	public ItemSerie(Serie serie, Exercicio exercicio, String repeticoes, String letra, String observacao, Integer ordenation) {
 		super();
 		id.setExercicio(exercicio);
 		id.setSerie(serie);
 		this.repeticoes = repeticoes;
 		this.letra = letra;
 		this.observacao = observacao;
+		this.ordenation = ordenation;
 	}
 	
 	@JsonIgnore
@@ -83,6 +86,14 @@ public class ItemSerie  implements Serializable{
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+	
+	public Integer getOrdenation() {
+		return ordenation;
+	}
+
+	public void setOrdenation(Integer ordenation) {
+		this.ordenation = ordenation;
 	}
 
 	@Override

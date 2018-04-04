@@ -194,10 +194,13 @@ public class AcademiaApplication implements CommandLineRunner{
 		Solicitacao s2 = new Solicitacao(null, format.parse("15/02/2018"), TipoSerie.DEFINICAO, StatusSerie.CONCLUIDO, "Loren ipsun ...", null, u2, u2.getNome());
 		Solicitacao s3 = new Solicitacao(null, format.parse("10/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2, u2.getNome());
 		Solicitacao s4 = new Solicitacao(null, format.parse("26/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
+		Solicitacao s5 = new Solicitacao(null, format.parse("29/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
+		Solicitacao s6 = new Solicitacao(null, format.parse("01/04/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
+		Solicitacao s7 = new Solicitacao(null, format.parse("03/04/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
 		
 		u1.getSolicitacoes().addAll(Arrays.asList(s1));
 		u2.getSolicitacoes().addAll(Arrays.asList(s2, s3));
-		u3.getSolicitacoes().addAll(Arrays.asList(s4));
+		u3.getSolicitacoes().addAll(Arrays.asList(s4, s5, s6, s7));
 		
 		
 		grupoRepository.save(
@@ -228,7 +231,7 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		usuarioRepository.save(Arrays.asList(u1, u2, u3, u4));
 		
-		solicitacaoRepository.save(Arrays.asList(s1, s2, s3, s4));
+		solicitacaoRepository.save(Arrays.asList(s1, s2, s3, s4, s5, s6, s7));
 		
 		//RELACIONANDO SERIE COM ITEM SERIE
 		
@@ -238,20 +241,20 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		serieRepository.save(Arrays.asList(sr1, sr2, sr3));
 		
-		ItemSerie is1 = new ItemSerie(sr1, ex1, "10 - 10 - 10", "A", null);
-		ItemSerie is2 = new ItemSerie(sr1, ex2, "10 - 10 - 10", "A", null);
-		ItemSerie is3 = new ItemSerie(sr1, ex3, "10 - 10 - 10", "A", null);
+		ItemSerie is1 = new ItemSerie(sr1, ex1, "10 - 10 - 10", "A", null, 0);
+		ItemSerie is2 = new ItemSerie(sr1, ex2, "10 - 10 - 10", "A", null, 1);
+		ItemSerie is3 = new ItemSerie(sr1, ex3, "10 - 10 - 10", "A", null, 2);
 		
-		ItemSerie is4 = new ItemSerie(sr2, ex4, "15 - 15 - 20", "A", null);
-		ItemSerie is5 = new ItemSerie(sr2, ex5, "15 - 15 - 20", "A", null);
-		ItemSerie is6 = new ItemSerie(sr2, ex6, "15 - 15 - 20", "A", null);
-		ItemSerie is7 = new ItemSerie(sr2, ex7, "15 - 15 - 20", "B", null);
-		ItemSerie is8 = new ItemSerie(sr2, ex8, "15 - 15 - 20", "B", null);
-		ItemSerie is9 = new ItemSerie(sr2, ex9, "15 - 15 - 20", "B", null);
+		ItemSerie is4 = new ItemSerie(sr2, ex4, "15 - 15 - 20", "A", null, 0);
+		ItemSerie is5 = new ItemSerie(sr2, ex5, "15 - 15 - 20", "A", null, 1);
+		ItemSerie is6 = new ItemSerie(sr2, ex6, "15 - 15 - 20", "A", null, 2);
+		ItemSerie is7 = new ItemSerie(sr2, ex7, "15 - 15 - 20", "B", null, 3);
+		ItemSerie is8 = new ItemSerie(sr2, ex8, "15 - 15 - 20", "B", null, 4);
+		ItemSerie is9 = new ItemSerie(sr2, ex9, "15 - 15 - 20", "B", null, 5);
 		
-		ItemSerie is10 = new ItemSerie(sr3, ex13, "10 - 10 - 10", "A", null);
-		ItemSerie is11 = new ItemSerie(sr3, ex14, "10 - 10 - 10", "A", null);
-		ItemSerie is12 = new ItemSerie(sr3, ex15, "10 - 10 - 10", "A", null);
+		ItemSerie is10 = new ItemSerie(sr3, ex13, "10 - 10 - 10", "A", null, 0);
+		ItemSerie is11 = new ItemSerie(sr3, ex14, "10 - 10 - 10", "A", null, 1);
+		ItemSerie is12 = new ItemSerie(sr3, ex15, "10 - 10 - 10", "A", null, 2);
 		
 		sr1.getItens().addAll(Arrays.asList(is1, is2, is3));
 		sr2.getItens().addAll(Arrays.asList(is4, is5, is6, is7, is8, is9));
