@@ -80,43 +80,19 @@ public class SolicitacaoResource {
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
-	@RequestMapping(value="/pendentes",method = RequestMethod.GET)
+	@RequestMapping(value="/findByStatus/{status}",method = RequestMethod.GET)
 	public ResponseEntity<Page<SolicitacaoDTO>> listPerPageSolicitacaoPendente(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
 			@RequestParam(value = "orderBy", defaultValue = "dataSolicitacao") String orderBy, 
-			@RequestParam(value = "direction", defaultValue = "DESC")String direction)
+			@RequestParam(value = "direction", defaultValue = "DESC")String direction,
+			@PathVariable Integer status)
 	{
-		Page<Solicitacao> list = solicitacaoService.findPageSolicitacaoPendente(page, linesPerPage, orderBy, direction);
+		Page<Solicitacao> list = solicitacaoService.findPageSolicitacaoPendente(page, linesPerPage, orderBy, direction, status);
 		Page<SolicitacaoDTO> listDTO = list.map(solicitacao -> new SolicitacaoDTO(solicitacao));
 		return ResponseEntity.ok().body(listDTO);
 	}
-	
-	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
-	@RequestMapping(value="/concluido",method = RequestMethod.GET)
-	public ResponseEntity<Page<SolicitacaoDTO>> listPerPageSolicitacaoConcluido(
-			@RequestParam(value = "page", defaultValue = "0") Integer page, 
-			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
-			@RequestParam(value = "orderBy", defaultValue = "dataSolicitacao") String orderBy, 
-			@RequestParam(value = "direction", defaultValue = "DESC")String direction)
-	{
-		Page<Solicitacao> list = solicitacaoService.findPageSolicitacaoConcluido(page, linesPerPage, orderBy, direction);
-		Page<SolicitacaoDTO> listDTO = list.map(solicitacao -> new SolicitacaoDTO(solicitacao));
-		return ResponseEntity.ok().body(listDTO);
-	}
-	
-	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
-	@RequestMapping(value="/rejeitado",method = RequestMethod.GET)
-	public ResponseEntity<Page<SolicitacaoDTO>> listPerPageSolicitacaoRejeitado(
-			@RequestParam(value = "page", defaultValue = "0") Integer page, 
-			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
-			@RequestParam(value = "orderBy", defaultValue = "dataSolicitacao") String orderBy, 
-			@RequestParam(value = "direction", defaultValue = "DESC")String direction)
-	{
-		Page<Solicitacao> list = solicitacaoService.findPageSolicitacaoRejeitado(page, linesPerPage, orderBy, direction);
-		Page<SolicitacaoDTO> listDTO = list.map(solicitacao -> new SolicitacaoDTO(solicitacao));
-		return ResponseEntity.ok().body(listDTO);
-	}
+    //List<SolicitacaoDTO> listDTO = list.stream().map(solicitacao -> new SolicitacaoDTO(solicitacao)).collect(Collectors.toList());
 	
 	@RequestMapping(value="/name", method = RequestMethod.GET)
 	public ResponseEntity<List<SolicitacaoDTO>> findBySolicitante(@RequestParam(value="name") String nome)

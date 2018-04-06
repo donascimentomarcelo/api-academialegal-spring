@@ -97,9 +97,9 @@ public class SolicitacaoService {
 	}
 
 	public Page<Solicitacao> findPageSolicitacaoPendente(Integer page, Integer linesPerPage, String orderBy,
-			String direction) {
+			String direction, Integer status) {
 		PageRequest pageRequest = new PageRequest(page,  linesPerPage, Direction.valueOf(direction), orderBy);
-		return solicitacaoRepository.findPageSolicitacaoPendente(pageRequest);
+		return solicitacaoRepository.findPageSolicitacaoPendente(pageRequest, status);
 	}
 
 	public List<Solicitacao> findBySolicitante(String nome) {
@@ -107,20 +107,6 @@ public class SolicitacaoService {
 		List<Solicitacao> solicitacao = solicitacaoRepository.findBySolicitanteContainingIgnoreCaseOrderByDataSolicitacaoDesc(nome);
 		
 		return solicitacao;
-	}
-
-	public Page<Solicitacao> findPageSolicitacaoConcluido(Integer page, Integer linesPerPage, String orderBy,
-			String direction) 
-	{
-		PageRequest pageRequest = new PageRequest(page,  linesPerPage, Direction.valueOf(direction), orderBy);
-		return solicitacaoRepository.findPageSolicitacaoConcluido(pageRequest);
-	}
-
-	public Page<Solicitacao> findPageSolicitacaoRejeitado(Integer page, Integer linesPerPage, String orderBy,
-			String direction) {
-		PageRequest pageRequest = new PageRequest(page,  linesPerPage, Direction.valueOf(direction), orderBy);
-		return solicitacaoRepository.findPageSolicitacaoRejeitado(pageRequest);
-	}
-	
+	}	
 
 }
