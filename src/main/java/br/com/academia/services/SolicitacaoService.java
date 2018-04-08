@@ -64,6 +64,8 @@ public class SolicitacaoService {
 		
 		UserSpringSecurity usuarioLogado = UserService.authenticated();
 		
+		checkIfHasPendente(usuarioLogado);
+		
 		Usuario usuario = usuarioRepository.findOne(usuarioLogado.getId());
 		
 		solicitacao.setDataSolicitacao(new Date());
@@ -73,6 +75,16 @@ public class SolicitacaoService {
 		solicitacao.setUsuario(usuario);
 		
 		return solicitacaoRepository.save(solicitacao);
+	}
+	
+	public void checkIfHasPendente(UserSpringSecurity usuarioLogado)
+	{
+		Solicitacao solicitacao =  solicitacaoRepository.existsSolicitacaoPendente(usuarioLogado.getId());
+		
+		if(solicitacao != null)
+		{
+			throw new DataIntegrityException("Você tem uma solicitação pendente. Favor, aguarde!");
+		}
 	}
 
 	public Solicitacao rejeitar(Integer id, String justificativa) {

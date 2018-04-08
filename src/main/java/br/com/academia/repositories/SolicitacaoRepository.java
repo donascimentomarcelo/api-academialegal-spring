@@ -21,5 +21,8 @@ public interface SolicitacaoRepository extends JpaRepository<Solicitacao, Intege
 	public Page<Solicitacao> findPageSolicitacaoPendente(Pageable pageRequest,@Param("status") Integer status);
 
 	public List<Solicitacao> findBySolicitanteContainingIgnoreCaseOrderByDataSolicitacaoDesc(String nome);
+	
+	@Query("SELECT sol from Solicitacao sol WHERE sol.statusSerie = 1 AND sol.usuario.id = :usuario_logado")
+	public Solicitacao existsSolicitacaoPendente(@Param("usuario_logado")Integer id);
 
 }
