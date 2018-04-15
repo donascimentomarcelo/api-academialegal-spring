@@ -92,4 +92,9 @@ public class SerieService {
 		return serie;
 	}
 
+	public List<Serie> dashboard() {
+		List<Serie> serie = serieRepository.dashboard();
+		return serie;
+	}
+
 }

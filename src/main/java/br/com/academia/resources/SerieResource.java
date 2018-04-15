@@ -83,4 +83,12 @@ public class SerieResource {
 		
 		return ResponseEntity.ok().body(serie);
 	}
+	
+	@RequestMapping(value="/dashboard", method = RequestMethod.GET) 
+	public ResponseEntity<List<Serie>> dashboard()
+	{
+		List<Serie> serie = serieService.dashboard();
+		
+		return ResponseEntity.ok().body(serie);
+	}
 }

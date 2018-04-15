@@ -123,5 +123,13 @@ public class UsuarioResource {
 		
 		return ResponseEntity.ok().body(listDto);
 	}
+	
+	@RequestMapping(value="/dashboard", method = RequestMethod.GET)
+	public ResponseEntity<List<Usuario>> dashboard()
+	{
+		List<Usuario> usuarios = usuarioService.dashboard();
+		
+		return ResponseEntity.ok().body(usuarios);
+	}
 
 }

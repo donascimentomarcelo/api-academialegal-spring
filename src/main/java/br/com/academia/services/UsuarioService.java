@@ -178,4 +178,9 @@ public class UsuarioService {
 		
 		return usuario;
 	}
+
+	public List<Usuario> dashboard() {
+		List<Usuario> usuarios = usuarioRepository.dashboard();
+		return usuarios;
+	}
 }
