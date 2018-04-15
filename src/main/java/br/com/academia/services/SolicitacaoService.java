@@ -119,6 +119,17 @@ public class SolicitacaoService {
 		List<Solicitacao> solicitacao = solicitacaoRepository.findBySolicitanteContainingIgnoreCaseOrderByDataSolicitacaoDesc(nome);
 		
 		return solicitacao;
+	}
+
+	public List<Solicitacao> findDashboard() {
+		List<Solicitacao> solicitacao = solicitacaoRepository.dashboard();
+		return solicitacao;
+	}
+
+	public List<Solicitacao> findMyDashboard() {
+		UserSpringSecurity usuarioLogado = UserService.authenticated();
+		List<Solicitacao> solicitacao = solicitacaoRepository.myDashboard(usuarioLogado.getId());
+		return solicitacao;
 	}	
 
 }

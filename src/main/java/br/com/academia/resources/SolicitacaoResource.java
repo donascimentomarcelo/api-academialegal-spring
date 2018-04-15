@@ -103,4 +103,20 @@ public class SolicitacaoResource {
 		
 		return ResponseEntity.ok().body(listDto);
 	}
+	
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public ResponseEntity<List<Solicitacao>> dashboard()
+	{
+		List<Solicitacao> solicitacao = solicitacaoService.findDashboard();
+		
+		return ResponseEntity.ok().body(solicitacao);
+	}
+	
+	@RequestMapping(value = "/myDashboard", method = RequestMethod.GET)
+	public ResponseEntity<List<Solicitacao>> myDashboard()
+	{
+		List<Solicitacao> solicitacao = solicitacaoService.findMyDashboard();
+		
+		return ResponseEntity.ok().body(solicitacao);
+	}
 }

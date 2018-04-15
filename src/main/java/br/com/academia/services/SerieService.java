@@ -86,4 +86,10 @@ public class SerieService {
 		return serie;
 	}
 
+	public List<Serie> myDashboard() {
+		UserSpringSecurity usuarioLogado = UserService.authenticated();
+		List<Serie> serie = serieRepository.myDashboard(usuarioLogado.getId());
+		return serie;
+	}
+
 }

@@ -75,4 +75,12 @@ public class SerieResource {
 		
 		return ResponseEntity.ok().body(serie);
 	}
+	
+	@RequestMapping(value="/myDashboard", method = RequestMethod.GET) 
+	public ResponseEntity<List<Serie>> myDashboard()
+	{
+		List<Serie> serie = serieService.myDashboard();
+		
+		return ResponseEntity.ok().body(serie);
+	}
 }

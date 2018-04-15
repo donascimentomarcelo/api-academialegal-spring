@@ -24,5 +24,24 @@ public interface SolicitacaoRepository extends JpaRepository<Solicitacao, Intege
 	
 	@Query("SELECT sol from Solicitacao sol WHERE sol.statusSerie = 1 AND sol.usuario.id = :usuario_logado")
 	public Solicitacao existsSolicitacaoPendente(@Param("usuario_logado")Integer id);
+	
+	@Query("SELECT new map(CASE "
+			+ "WHEN (sol.statusSerie = 1) THEN 'Pendente' "
+			+ "WHEN (sol.statusSerie = 2) THEN 'Concluído' "
+			+ "WHEN (sol.statusSerie = 3) THEN 'Rejeitado' END as statusSolicitacao, "
+			+ "COUNT(sol.id) as qtddSolicitacao) "
+			+ "FROM Solicitacao sol GROUP BY sol.statusSerie")
+	List<Solicitacao> dashboard();
+	
+	@Query("SELECT new map(CASE "
+			+ "WHEN (sol.statusSerie = 1) THEN 'Pendente' "
+			+ "WHEN (sol.statusSerie = 2) THEN 'Concluído'"
+			+ "WHEN (sol.statusSerie = 3) THEN 'Rejeitado' END as statusSolicitacao,"
+			+ "COUNT(sol.id) as qtddSolicitacao)"
+			+ "FROM Solicitacao sol "
+			+ "INNER JOIN sol.usuario "
+			+ "WHERE sol.usuario.id = :usuario_logado "
+			+ "GROUP BY sol.statusSerie")
+	public List<Solicitacao> myDashboard(@Param("usuario_logado")Integer id);
 
 }

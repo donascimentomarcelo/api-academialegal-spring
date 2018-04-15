@@ -29,6 +29,7 @@ public class GrupoResource {
 	@Autowired
 	private ExercicioService exercicioService; 
 	
+	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Grupo>> list()
 	{
@@ -48,6 +49,7 @@ public class GrupoResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}/exercicios")
 	public ResponseEntity<List<Exercicio>> findExercicioByGrupo(@PathVariable Integer id)
 	{
@@ -56,6 +58,7 @@ public class GrupoResource {
 		return ResponseEntity.ok().body(exercicio);
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
 	@RequestMapping(value = "/{id}/grupoByExercicio", method = RequestMethod.GET)
 	public ResponseEntity<GrupoDTO> findOneGrupoExercicio(@PathVariable Integer id)
 	{

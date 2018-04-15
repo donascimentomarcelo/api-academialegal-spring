@@ -20,4 +20,17 @@ public interface SerieRepository extends JpaRepository<Serie, Integer>{
 	@Query("Select sr from Serie sr INNER JOIN sr.solicitacao sol WHERE lower(sol.solicitante) LIKE lower(concat('%', :nome ,'%')) ORDER BY sr.dataCriacao DESC")
 	List<Serie> findBySolicitante(@Param("nome") String nome);
 
+	@Query("SELECT new map(CASE "
+			+ "WHEN (s.tipoSerie = 1) THEN 'Hipertrofia' "
+			+ "WHEN (s.tipoSerie = 2) THEN 'Definição' "
+			+ "WHEN (s.tipoSerie = 3) THEN 'Resistência' "
+			+ "WHEN (s.tipoSerie = 4) THEN 'Outros' END AS tipoSerie, "
+			+ "COUNT(s.id) AS qtddSerie) "
+			+ "FROM Serie s "
+			+ "INNER JOIN s.solicitacao sol "
+			+ "INNER JOIN sol.usuario "
+			+ "WHERE sol.usuario.id = :usuario_logado "
+			+ "GROUP BY s.tipoSerie")
+	List<Serie> myDashboard(@Param("usuario_logado") Integer id);
+
 }

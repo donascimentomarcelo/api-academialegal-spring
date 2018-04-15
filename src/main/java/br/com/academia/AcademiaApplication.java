@@ -197,10 +197,11 @@ public class AcademiaApplication implements CommandLineRunner{
 		Solicitacao s5 = new Solicitacao(null, format.parse("29/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
 		Solicitacao s6 = new Solicitacao(null, format.parse("01/04/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
 		Solicitacao s7 = new Solicitacao(null, format.parse("03/04/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
+		Solicitacao s8 = new Solicitacao(null, format.parse("03/04/2018"), TipoSerie.HIPERTROFIA, StatusSerie.REJEITADO, "Loren ipsun ...", null, u3, u3.getNome());
 		
 		u1.getSolicitacoes().addAll(Arrays.asList(s1));
 		u2.getSolicitacoes().addAll(Arrays.asList(s2, s3));
-		u3.getSolicitacoes().addAll(Arrays.asList(s4, s5, s6, s7));
+		u3.getSolicitacoes().addAll(Arrays.asList(s4, s5, s6, s7, s8));
 		
 		
 		grupoRepository.save(
@@ -231,7 +232,7 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		usuarioRepository.save(Arrays.asList(u1, u2, u3, u4));
 		
-		solicitacaoRepository.save(Arrays.asList(s1, s2, s3, s4, s5, s6, s7));
+		solicitacaoRepository.save(Arrays.asList(s1, s2, s3, s4, s5, s6, s7, s8));
 		
 		//RELACIONANDO SERIE COM ITEM SERIE
 		

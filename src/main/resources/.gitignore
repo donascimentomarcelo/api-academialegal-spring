@@ -2,3 +2,6 @@ aws.access_key_id=AKIAIN74DKRTZYQ4MQSQ
 aws.secret_access_key=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
 s3.bucket=academia-legal
 s3.region=sa-east-1
+
+onesignal.app-id = 654adecb-6ef1-49c6-9d7a-9683befb1586
+onesignal.api-key = Basic NzU2NDE4ZjgtNTg4NC00ODEyLTlkNWUtN2NmODQ0NTE3MWEz
