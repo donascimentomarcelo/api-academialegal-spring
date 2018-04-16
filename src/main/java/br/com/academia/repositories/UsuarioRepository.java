@@ -26,17 +26,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 			+ "INNER JOIN u.perfis p "
 			+ "GROUP BY p")
 	List<Usuario> dashboard();
-	
-	/*
-	 * 	@Query("SELECT new map(CASE "
-			+ "WHEN (p.codigo = 1) THEN 'Admin' "
-			+ "WHEN (p.codigo = 2) THEN 'Aluno' "
-			+ "WHEN (p.codigo = 3) THEN 'Professor' END AS perfil, "
-			+ "COUNT(u.id) AS qtddUsuario) "
-			+ "FROM Usuario u "
-			+ "INNER JOIN u.perfis p "
-			+ "GROUP BY p.codigo")
-		List<Usuario> dashboard();
-	 * */
 
 }

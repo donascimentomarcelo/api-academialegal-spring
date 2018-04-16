@@ -22,8 +22,8 @@ public interface SerieRepository extends JpaRepository<Serie, Integer>{
 
 	@Query("SELECT new map(CASE "
 			+ "WHEN (s.tipoSerie = 1) THEN 'Hipertrofia' "
-			+ "WHEN (s.tipoSerie = 2) THEN 'Definição' "
-			+ "WHEN (s.tipoSerie = 3) THEN 'Resistência' "
+			+ "WHEN (s.tipoSerie = 2) THEN 'Definicao' "
+			+ "WHEN (s.tipoSerie = 3) THEN 'Resistencia' "
 			+ "WHEN (s.tipoSerie = 4) THEN 'Outros' END AS tipoSerie, "
 			+ "COUNT(s.id) AS qtddSerie) "
 			+ "FROM Serie s "
@@ -35,8 +35,8 @@ public interface SerieRepository extends JpaRepository<Serie, Integer>{
 	
 	@Query("SELECT new map(CASE "
 			+ "WHEN (s.tipoSerie = 1) THEN 'Hipertrofia' "
-			+ "WHEN (s.tipoSerie = 2) THEN 'Definição' "
-			+ "WHEN (s.tipoSerie = 3) THEN 'Resistência' "
+			+ "WHEN (s.tipoSerie = 2) THEN 'Definicao' "
+			+ "WHEN (s.tipoSerie = 3) THEN 'Resistencia' "
 			+ "WHEN (s.tipoSerie = 4) THEN 'Outros' END AS tipoSerie, "
 			+ "COUNT(s.id) AS qtddSerie) "
 			+ "FROM Serie s "
