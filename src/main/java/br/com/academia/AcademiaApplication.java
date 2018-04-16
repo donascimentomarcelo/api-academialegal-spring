@@ -192,7 +192,7 @@ public class AcademiaApplication implements CommandLineRunner{
 									"Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica", 
 									"Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica", u1, u1.getNome());
 		Solicitacao s2 = new Solicitacao(null, format.parse("15/02/2018"), TipoSerie.DEFINICAO, StatusSerie.CONCLUIDO, "Loren ipsun ...", null, u2, u2.getNome());
-		Solicitacao s3 = new Solicitacao(null, format.parse("10/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u2, u2.getNome());
+		Solicitacao s3 = new Solicitacao(null, format.parse("10/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.CONCLUIDO, "Loren ipsun ...", null, u2, u2.getNome());
 		Solicitacao s4 = new Solicitacao(null, format.parse("26/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
 		Solicitacao s5 = new Solicitacao(null, format.parse("29/03/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
 		Solicitacao s6 = new Solicitacao(null, format.parse("01/04/2018"), TipoSerie.HIPERTROFIA, StatusSerie.PENDENTE, "Loren ipsun ...", null, u3, u3.getNome());
