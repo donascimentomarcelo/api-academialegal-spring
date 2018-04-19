@@ -27,6 +27,7 @@ public class SerieResource {
 	@Autowired
 	private SerieService serieService;
 	
+	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Page<Serie>> listPerPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
@@ -49,6 +50,7 @@ public class SerieResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@PreAuthorize("hasAnyRole('PROFESSOR')")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Serie> create(@Valid @RequestBody Serie serie)
 	{
