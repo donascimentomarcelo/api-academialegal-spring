@@ -18,6 +18,7 @@ import br.com.academia.domain.dto.PerfilDTO;
 import br.com.academia.domain.dto.UsuarioDTO;
 import br.com.academia.domain.enums.Perfil;
 import br.com.academia.exceptions.AuthorizationException;
+import br.com.academia.exceptions.DataIntegrityException;
 import br.com.academia.exceptions.ObjectNotFoundException;
 import br.com.academia.repositories.UsuarioRepository;
 import br.com.academia.security.UserSpringSecurity;
@@ -105,7 +106,20 @@ public class UsuarioService {
 		
 		if(dto.getPerfil() == 1)
 		{
+			if(usuario.getPerfis().contains(Perfil.ALUNO))
+			{
+				throw new DataIntegrityException("Um aluno não pode ter perfil de admin.");
+			}
 			usuario.addPerfil(Perfil.ADMIN);
+		}
+		else if(dto.getPerfil() == 2)
+		{
+			if(usuario.getPerfis().contains(Perfil.ADMIN))
+			{
+				throw new DataIntegrityException("Um admin não pode ter perfil de aluno.");
+			}
+				
+			usuario.addPerfil(Perfil.ALUNO);
 		}
 		else if(dto.getPerfil() == 3)
 		{
