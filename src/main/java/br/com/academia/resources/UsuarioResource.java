@@ -86,6 +86,7 @@ public class UsuarioResource {
 		return ResponseEntity.ok().body(usuario);
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}/addPerfil", method = RequestMethod.PUT)
 	public ResponseEntity<Void> addPerfil(@RequestBody PerfilDTO dto, @PathVariable Integer id)
 	{
@@ -96,6 +97,7 @@ public class UsuarioResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}/removePerfil", method = RequestMethod.PUT)
 	public ResponseEntity<Void> removePerfil(@RequestBody PerfilDTO dto, @PathVariable Integer id)
 	{
@@ -114,6 +116,7 @@ public class UsuarioResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value="/name", method = RequestMethod.GET)
 	public ResponseEntity<List<UsuarioListDTO>> findByName(@RequestParam(value="name") String nome)
 	{

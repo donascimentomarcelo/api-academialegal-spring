@@ -29,6 +29,7 @@ public class ExercicioResource {
 	@Autowired
 	private ExercicioService exercicioService;
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Page<ExercicioDTO>> list(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
@@ -66,6 +67,7 @@ public class ExercicioResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Exercicio> findOne(@PathVariable Integer id)
 	{
@@ -74,6 +76,7 @@ public class ExercicioResource {
 		return ResponseEntity.ok().body(exercicio);
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value="/name", method = RequestMethod.GET)
 	public ResponseEntity<List<Exercicio>> findByName(@RequestParam(value="name") String nome)
 	{

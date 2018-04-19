@@ -30,7 +30,7 @@ public class SolicitacaoResource {
 	@Autowired
 	private SolicitacaoService solicitacaoService; 
 	
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Page<SolicitacaoDTO>> listPerPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
@@ -69,6 +69,7 @@ public class SolicitacaoResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@PreAuthorize("hasAnyRole('PROFESSOR')")
 	@RequestMapping(value = "/{id}/rejeitar", method = RequestMethod.PUT)
 	public ResponseEntity<SolicitacaoDTO> rejeitar(@Valid @RequestBody RejeitarDTO dto, @PathVariable Integer id )
 	{
@@ -94,6 +95,7 @@ public class SolicitacaoResource {
 	}
     //List<SolicitacaoDTO> listDTO = list.stream().map(solicitacao -> new SolicitacaoDTO(solicitacao)).collect(Collectors.toList());
 	
+	@PreAuthorize("hasAnyRole('ADMIN','PROFESSOR')")
 	@RequestMapping(value="/name", method = RequestMethod.GET)
 	public ResponseEntity<List<SolicitacaoDTO>> findBySolicitante(@RequestParam(value="name") String nome)
 	{
