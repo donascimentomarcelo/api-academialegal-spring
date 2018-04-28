@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import br.com.academia.exceptions.AuthorizationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -62,5 +63,15 @@ public class JWTUtil {
 			return claims.getSubject();
 		}
 		return null;
+	}
+	
+	public void checkIfPerfilIsEmpty(UserSpringSecurity usuarioLogado)
+	{
+		if(usuarioLogado.getAuthorities().isEmpty())
+		{
+			System.out.print("aqui");
+			throw new AuthorizationException("Usuário bloqueado!");
+			
+		}
 	}
 }

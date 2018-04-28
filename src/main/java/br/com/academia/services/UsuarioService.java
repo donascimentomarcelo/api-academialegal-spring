@@ -137,6 +137,11 @@ public class UsuarioService {
 	{
 		Usuario usuario = find(id);
 		
+		if(usuario.getPerfis().size() == 1)
+		{
+			throw new DataIntegrityException("O usuário não pode ficar sem perfil vinculado.");
+		}
+		
 		if(dto.getPerfil() == 1)
 		{
 			usuario.removePerfil(Perfil.ADMIN);
