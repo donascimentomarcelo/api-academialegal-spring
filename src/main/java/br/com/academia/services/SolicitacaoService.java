@@ -28,6 +28,9 @@ public class SolicitacaoService {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private PushService pushService;
 
 	public Page<Solicitacao> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) 
 	{
@@ -89,6 +92,10 @@ public class SolicitacaoService {
 
 	public Solicitacao rejeitar(Integer id, String justificativa) {
 		
+		String message = "Sua série foi rejeitada pelo(a) professor(a) ";
+		
+		UserSpringSecurity usuarioLogado = UserService.authenticated();
+		
 		Solicitacao solicitacao = find(id);
 		
 		if(solicitacao.getStatusSerie() != StatusSerie.PENDENTE)
@@ -100,6 +107,7 @@ public class SolicitacaoService {
 		solicitacao.setJustificativa(justificativa);
 		
 		solicitacao = solicitacaoRepository.save(solicitacao);
+		pushService.push(solicitacao.getUsuario().getEmail(), usuarioLogado.getNome(), message);
 		
 		return solicitacao;
 	}

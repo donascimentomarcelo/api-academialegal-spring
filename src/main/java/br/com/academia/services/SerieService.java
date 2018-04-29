@@ -34,6 +34,9 @@ public class SerieService {
 	@Autowired
 	private ItemSerieRepository itemSerieRepository;
 	
+	@Autowired
+	private PushService pushService;
+	
 	
 	public Page<Serie> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) 
 	{
@@ -51,6 +54,8 @@ public class SerieService {
 	}
 
 	public Serie save(Serie serie) {
+		
+		String message = "Sua série foi criada pelo(a) professor(a) ";
 		
 		UserSpringSecurity usuarioLogado = UserService.authenticated();
 		
@@ -70,6 +75,8 @@ public class SerieService {
 		}
 		
 		itemSerieRepository.save(serie.getItens());
+		
+		pushService.push(solicitacao.getUsuario().getEmail(), usuarioLogado.getNome(), message);
 		
 		return serie;
 	}
