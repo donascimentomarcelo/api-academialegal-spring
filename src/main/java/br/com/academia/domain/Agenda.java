@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Agenda implements Serializable{
 
@@ -26,6 +28,7 @@ public class Agenda implements Serializable{
 	private String aluno;
 	
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="agenda")
+	@JsonIgnore
 	private Avaliacao avaliacao;
 
 	public Agenda()
